@@ -38,4 +38,11 @@
     <string name="sample_rating">5.7</string>
     <string name="sample_movie_genre">Adventure</string>
     <string name="sample_known_for">Star wars : The last Jedi \nStar wars : The force awakens</string>
+
+    <!--  Bottom nav  -->
+    <string name="homepage">Homepage</string>
+    <string name="discover">Discover</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="your_favorite_artists">Your favorite artists</string>
 </resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.artist_favorite.FavoriteArtistFragment">
+
+    <TextView
+        android:id="@+id/tv_favorite_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:textAlignment="center"
+        style="@style/TextAppearance.AppCompat.Headline5"
+        android:textColor="@color/text_body"
+        android:text="@string/your_favorite_artists"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/div"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_favorite_title"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favorite_artist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/div"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="-3dp"
+
+        tools:listitem="@layout/item_actor_search_result"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
+
+</RelativeLayout>
