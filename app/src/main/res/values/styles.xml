@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextAppearance.AppCompat.Body" parent="TextAppearance.AppCompat">
+    <style name="TextAppearance.AppCompat.Body" parent="">
         <item name="fontFamily">@font/inter_regular</item>
     </style>
 

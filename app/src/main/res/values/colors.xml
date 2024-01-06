@@ -52,4 +52,10 @@
     <color name="success_light">#84DDA5</color>
     <color name="success_base">#64C086</color>
     <color name="success_dark">#5BAB78</color>
+
+    <!--  Text Colors  -->
+    <color name="text_black">@color/gray_900</color>
+    <color name="text_body">@color/gray_800</color>
+    <color name="text_body_light">@color/gray_500</color>
+    <color name="text_secondary">@color/gray_300</color>
 </resources>
