@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.domain.models
+package com.syauqi.watcheez.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -2,10 +2,8 @@ package com.syauqi.watcheez.domain.adapter
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.syauqi.watcheez.domain.models.People
+import com.syauqi.watcheez.domain.model.People
 import com.syauqi.watcheez.databinding.ItemActorPosterBinding
 import com.syauqi.watcheez.domain.BaseAdapter
 import com.syauqi.watcheez.utils.enums.ImageSize

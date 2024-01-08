@@ -1,23 +1,26 @@
-package com.syauqi.watcheez.domain.repository
+package com.syauqi.watcheez.core.data
 
 import android.util.Log
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
-import com.syauqi.watcheez.domain.models.People
-import com.syauqi.watcheez.domain.models.PersonDetail
+import com.syauqi.watcheez.domain.model.People
+import com.syauqi.watcheez.domain.model.PersonDetail
+import com.syauqi.watcheez.domain.repository.IPeopleRepository
 import com.syauqi.watcheez.utils.DataMapper.toPeopleArrayList
 import com.syauqi.watcheez.utils.DataMapper.toPersonDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.http.Url
 import java.lang.Exception
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class PeopleRepository(
+@Singleton
+class PeopleRepository @Inject constructor(
     private val apiHelper: ApiHelper
-) {
-    fun getPopularPeople(): Flow<ApiResponse<List<People>>>{
+): IPeopleRepository {
+    override fun getPopularPeople(): Flow<ApiResponse<List<People>>>{
         return flow{
             try {
                 val response = apiHelper.getPopularPeople()
@@ -33,7 +36,7 @@ class PeopleRepository(
             }
         }.flowOn(Dispatchers.IO)
     }
-    fun getTrendingPeople() : Flow<ApiResponse<List<People>>> {
+    override fun getTrendingPeople() : Flow<ApiResponse<List<People>>> {
         return flow{
             try {
                 val response = apiHelper.getTrendingPeople("day")
@@ -49,7 +52,7 @@ class PeopleRepository(
             }
         }.flowOn(Dispatchers.IO)
     }
-    fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>>{
+    override fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>>{
         return flow {
             try {
                 val response = apiHelper.getPersonById(id)

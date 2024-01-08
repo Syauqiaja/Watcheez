@@ -5,7 +5,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.databinding.ItemArtistOfTheYearBinding
 import com.syauqi.watcheez.domain.BaseAdapter
-import com.syauqi.watcheez.domain.models.People
+import com.syauqi.watcheez.domain.model.People
 import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 

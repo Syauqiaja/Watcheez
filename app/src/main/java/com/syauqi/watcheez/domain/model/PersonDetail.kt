@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.domain.models
+package com.syauqi.watcheez.domain.model
 
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.CastItem
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.ExternalIds

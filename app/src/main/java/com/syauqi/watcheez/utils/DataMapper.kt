@@ -3,8 +3,8 @@ package com.syauqi.watcheez.utils
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
-import com.syauqi.watcheez.domain.models.People
-import com.syauqi.watcheez.domain.models.PersonDetail
+import com.syauqi.watcheez.domain.model.People
+import com.syauqi.watcheez.domain.model.PersonDetail
 
 object DataMapper {
     fun List<PeopleEntity>.toPeopleArrayList():ArrayList<People>{

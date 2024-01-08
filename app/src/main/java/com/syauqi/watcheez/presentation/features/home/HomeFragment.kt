@@ -1,8 +1,5 @@
 package com.syauqi.watcheez.presentation.features.home
 
-import android.opengl.Visibility
-import android.view.View
-import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.syauqi.watcheez.domain.adapter.TrendingArtistAdapter
@@ -10,7 +7,7 @@ import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentHomeBinding
 import com.syauqi.watcheez.domain.adapter.TopArtistAdapter
-import com.syauqi.watcheez.domain.models.People
+import com.syauqi.watcheez.domain.model.People
 import com.syauqi.watcheez.utils.enums.Gender
 import dagger.hilt.android.AndroidEntryPoint
 
