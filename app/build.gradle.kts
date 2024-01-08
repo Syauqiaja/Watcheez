@@ -81,6 +81,7 @@ dependencies {
 
 //    Design
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }
 kapt {
     correctErrorTypes = true

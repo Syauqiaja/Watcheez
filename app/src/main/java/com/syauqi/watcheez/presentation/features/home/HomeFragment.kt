@@ -1,5 +1,7 @@
 package com.syauqi.watcheez.presentation.features.home
 
+import android.opengl.Visibility
+import android.view.View
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -55,10 +57,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.popularArtist.observe(viewLifecycleOwner){result ->
             when(result){
                 is ApiResponse.Success -> {
-                    topArtistAdapter.setData(result.data)
                 }
                 else -> {}
             }
         }
     }
+
 }

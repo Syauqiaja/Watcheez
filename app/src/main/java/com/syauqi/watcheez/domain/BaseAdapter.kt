@@ -1,16 +1,18 @@
-package com.syauqi.watcheez.domain.adapter
+package com.syauqi.watcheez.domain
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.facebook.shimmer.Shimmer
+import com.facebook.shimmer.ShimmerDrawable
 
 open class BaseAdapter<B: ViewBinding, T>(
     private val inflateMethod : (ViewGroup, Int) -> B,
 
-):RecyclerView.Adapter<BaseAdapter<B,T>.ListViewHolder>() {
+):RecyclerView.Adapter<BaseAdapter<B, T>.ListViewHolder>() {
     private val _listData = ArrayList<T>()
+    lateinit var onItemClick : (T) -> Unit
     fun setData(datas: List<T>){
         _listData.clear()
         _listData.addAll(datas)
@@ -20,6 +22,11 @@ open class BaseAdapter<B: ViewBinding, T>(
     inner class ListViewHolder(private val binding: B): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: T){
             bindView(data, binding, itemView)
+        }
+        init {
+            binding.root.setOnClickListener {
+                onItemClick(_listData[adapterPosition])
+            }
         }
     }
 
@@ -31,5 +38,17 @@ open class BaseAdapter<B: ViewBinding, T>(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         holder.bind(_listData[position])
+    }
+
+    private val shimmerBuilder = Shimmer.AlphaHighlightBuilder()
+        .setDuration(1800) // how long the shimmering animation takes to do one full sweep
+        .setBaseAlpha(0.7f) //the alpha of the underlying children
+        .setHighlightAlpha(0.6f) // the shimmer alpha amount
+        .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
+        .setAutoStart(true)
+        .build()
+
+    val shimmerDrawable = ShimmerDrawable().apply {
+        setShimmer(shimmerBuilder)
     }
 }
