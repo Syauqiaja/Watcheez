@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.features.artist_favorite
+package com.syauqi.watcheez.presentation.features.artist_favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

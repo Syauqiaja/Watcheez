@@ -47,6 +47,7 @@
                     android:src="@drawable/ic_star_circle_64"
                     app:tint="@color/warning_base"/>
                 <TextView
+                    android:id="@+id/tv_popularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/iv_icon_popularity"
