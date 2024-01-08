@@ -29,7 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             topArtistAdapter.onItemClick = {navigateToPeople(it)}
 
             rvTrendingActress.adapter = trendingActressAdapter
-            trendingActorAdapter.onItemClick = {navigateToPeople(it)}
+            trendingActressAdapter.onItemClick = {navigateToPeople(it)}
         }
     }
 

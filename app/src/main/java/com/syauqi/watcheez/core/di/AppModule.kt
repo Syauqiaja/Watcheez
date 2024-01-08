@@ -1,7 +1,7 @@
 package com.syauqi.watcheez.core.di
 
 import com.google.gson.GsonBuilder
-import com.syauqi.watcheez.domain.repository.MovieRepository
+import com.syauqi.watcheez.domain.repository.PeopleRepository
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelperImpl
 import com.syauqi.watcheez.core.data.source.network.api.ApiService
@@ -67,7 +67,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMovieRepository(apiHelper: ApiHelper): MovieRepository = MovieRepository(apiHelper)
+    fun provideMovieRepository(apiHelper: ApiHelper): PeopleRepository = PeopleRepository(apiHelper)
 
     @Singleton
     @Provides

@@ -2,7 +2,9 @@ package com.syauqi.watcheez.utils
 
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
+import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
 import com.syauqi.watcheez.domain.models.People
+import com.syauqi.watcheez.domain.models.PersonDetail
 
 object DataMapper {
     fun List<PeopleEntity>.toPeopleArrayList():ArrayList<People>{
@@ -62,6 +64,24 @@ object DataMapper {
             photoUrl = this.profilePath!!,
             popularity = this.popularity!!,
             gender = this.gender
+        )
+    }
+
+    fun PersonDetailResponse.toPersonDetail(): PersonDetail{
+        return PersonDetail(
+        birthday =   this.birthday,
+        gender = this.gender,
+        profilePath = this.profilePath,
+        biography = this.biography,
+        popularity = this.popularity,
+        name = this.name,
+        id = this.id,
+        externalIds = this.externalIds,
+        placeOfBirth = this.placeOfBirth,
+        images = this.images.profiles,
+        movieCredits = this.movieCredits?.cast?.filter {
+            castItem -> castItem.backdropPath != null
+        },
         )
     }
 }

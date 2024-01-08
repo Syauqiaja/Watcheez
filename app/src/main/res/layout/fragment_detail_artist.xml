@@ -234,7 +234,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_contact_title"
                     app:layout_constraintStart_toEndOf="@id/iv_imdb_logo"
 
-                    android:text="IMDb Id : nm0000184"
+                    android:text="@string/imdb_id"
                     style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"
                     android:textColor="@color/text_body"/>
 
@@ -273,6 +273,7 @@
                     android:textColor="@color/primary_base"/>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_filmography"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"

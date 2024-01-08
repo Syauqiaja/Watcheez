@@ -64,7 +64,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.50")
     annotationProcessor("com.google.dagger:hilt-compiler:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
-    kapt("androidx.hilt:hilt-compiler:2.50")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
 
 //    Network Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
