@@ -57,6 +57,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.popularArtist.observe(viewLifecycleOwner){result ->
             when(result){
                 is ApiResponse.Success -> {
+                    topArtistAdapter.setData(result.data)
                 }
                 else -> {}
             }

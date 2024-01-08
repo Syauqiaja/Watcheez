@@ -12,7 +12,7 @@ open class BaseAdapter<B: ViewBinding, T>(
 
 ):RecyclerView.Adapter<BaseAdapter<B, T>.ListViewHolder>() {
     private val _listData = ArrayList<T>()
-    lateinit var onItemClick : (T) -> Unit
+    var onItemClick : ((T) -> Unit)? = null
     fun setData(datas: List<T>){
         _listData.clear()
         _listData.addAll(datas)
@@ -24,8 +24,9 @@ open class BaseAdapter<B: ViewBinding, T>(
             bindView(data, binding, itemView)
         }
         init {
+            if(onItemClick != null)
             binding.root.setOnClickListener {
-                onItemClick(_listData[adapterPosition])
+                onItemClick?.invoke(_listData[adapterPosition])
             }
         }
     }
@@ -41,7 +42,7 @@ open class BaseAdapter<B: ViewBinding, T>(
     }
 
     private val shimmerBuilder = Shimmer.AlphaHighlightBuilder()
-        .setDuration(1800) // how long the shimmering animation takes to do one full sweep
+        .setDuration(1000) // how long the shimmering animation takes to do one full sweep
         .setBaseAlpha(0.7f) //the alpha of the underlying children
         .setHighlightAlpha(0.6f) // the shimmer alpha amount
         .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)

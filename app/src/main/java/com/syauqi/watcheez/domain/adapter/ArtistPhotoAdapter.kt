@@ -16,6 +16,9 @@ class ArtistPhotoAdapter: BaseAdapter<ItemActorPhotosBinding, ImageItem>(
 ) {
     override fun bindView(data: ImageItem, binding: ItemActorPhotosBinding, itemView: View) {
         super.bindView(data, binding, itemView)
-        Glide.with(itemView).load(data.filePath.asRemoteImagePath(ImageSize.W_300)).into(binding.ivPhoto)
+        Glide.with(itemView)
+            .load(data.filePath.asRemoteImagePath(ImageSize.W_300))
+            .placeholder(shimmerDrawable)
+            .into(binding.ivPhoto)
     }
 }

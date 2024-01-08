@@ -20,6 +20,7 @@ class TopArtistAdapter: BaseAdapter<ItemArtistOfTheYearBinding, People>(
         binding.tvPopularity.text = String.format("%.2f", data.popularity)
         Glide.with(itemView)
             .load(data.photoUrl.asRemoteImagePath(ImageSize.ORIGINAL))
+            .placeholder(shimmerDrawable)
             .into(binding.ivActorProfileHead)
     }
 }

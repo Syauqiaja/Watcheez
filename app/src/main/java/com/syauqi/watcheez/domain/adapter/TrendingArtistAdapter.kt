@@ -20,6 +20,9 @@ class TrendingArtistAdapter : BaseAdapter<ItemActorPosterBinding, People>(
         super.bindView(data, binding, itemView)
         binding.tvActorName.text = data.name
         binding.tvPopularity.text = String.format("%.2f", data.popularity)
-        Glide.with(itemView).load(data.photoUrl.asRemoteImagePath(ImageSize.ORIGINAL)).into(binding.ivActorProfileHead)
+        Glide.with(itemView)
+            .load(data.photoUrl.asRemoteImagePath(ImageSize.ORIGINAL))
+            .placeholder(shimmerDrawable)
+            .into(binding.ivActorProfileHead)
     }
 }
