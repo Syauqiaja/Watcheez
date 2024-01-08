@@ -9,4 +9,5 @@ interface IPeopleRepository {
     fun getTrendingPeople() : Flow<ApiResponse<List<People>>>
     fun getPopularPeople(): Flow<ApiResponse<List<People>>>
     fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>>
+    fun searchPeopleByQuery(query: String): Flow<ApiResponse<List<People>>>
 }

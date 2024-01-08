@@ -7,14 +7,17 @@ import com.syauqi.watcheez.domain.repository.IPeopleRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class PeopleInteractor @Inject constructor(private val peopleRepository: IPeopleRepository) : PeopleUseCase {
+class PeopleInteractor @Inject constructor(private val repository: IPeopleRepository) : PeopleUseCase {
     override fun getTrendingPeople(): Flow<ApiResponse<List<People>>> =
-        peopleRepository.getTrendingPeople()
+        repository.getTrendingPeople()
 
     override fun getPopularPeople(): Flow<ApiResponse<List<People>>> =
-        peopleRepository.getPopularPeople()
+        repository.getPopularPeople()
 
     override fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>> =
-        peopleRepository.getPeopleById(id)
+        repository.getPeopleById(id)
+
+    override fun searchPeopleByQuery(query: String): Flow<ApiResponse<List<People>>> =
+        repository.searchPeopleByQuery(query)
 
 }
