@@ -82,6 +82,11 @@ dependencies {
 //    Design
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+//    ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:1.2.0")
+    implementation("androidx.media3:media3-ui:1.2.0")
+    implementation("androidx.media3:media3-session:1.2.0")
 }
 kapt {
     correctErrorTypes = true
