@@ -45,9 +45,9 @@ android {
 }
 
 dependencies {
-    val room_version = "2.6.1"
-    val nav_version = "2.7.6"
-    val hilt_version = "2.50"
+    val roomVersion = "2.6.1"
+    val navVersion = "2.7.6"
+    val hiltVersion = "2.50"
 //    Core
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -56,8 +56,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
 
 //    Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
 //    Test Implementation
     testImplementation("junit:junit:4.13.2")
@@ -65,9 +65,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 //    Dependency Injection
-    implementation("com.google.dagger:hilt-android:$hilt_version")
-    annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
-    ksp("com.google.dagger:hilt-compiler:$hilt_version")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    annotationProcessor("com.google.dagger:hilt-compiler:$hiltVersion")
+    ksp("com.google.dagger:hilt-compiler:$hiltVersion")
     ksp("androidx.hilt:hilt-compiler:1.1.0")
 
 //    Network Retrofit
@@ -93,9 +93,9 @@ dependencies {
     implementation("androidx.media3:media3-session:1.2.0")
 
 //    Room
-    implementation("androidx.room:room-runtime:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    implementation("androidx.room:room-paging:$room_version")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-paging:$roomVersion")
 
 }
