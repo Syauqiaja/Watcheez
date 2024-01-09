@@ -90,14 +90,6 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
         }
     }
 
-    fun hideSystemUI(){
-        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
-        WindowInsetsControllerCompat(requireActivity().window, binding.videoPlayer).let { controller ->
-            controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        }
-    }
-
     private fun updateSaveButton(){
         val drawable = if(people.isFavorite){
             R.drawable.ic_bookmark_filled
