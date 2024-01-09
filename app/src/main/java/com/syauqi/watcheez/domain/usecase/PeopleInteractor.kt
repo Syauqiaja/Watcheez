@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PeopleInteractor @Inject constructor(private val repository: IPeopleRepository) : PeopleUseCase {
-    override fun getTrendingPeople(): Flow<ApiResponse<List<People>>> =
-        repository.getTrendingPeople()
-
     override fun getPopularPeople(): Flow<ApiResponse<List<People>>> =
         repository.getPopularPeople()
+
+    override fun getTrendingPeople(): Flow<ApiResponse<List<People>>> =
+        repository.getTrendingPeople()
 
     override fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>> =
         repository.getPeopleById(id)

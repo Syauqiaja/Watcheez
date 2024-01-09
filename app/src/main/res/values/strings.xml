@@ -18,9 +18,9 @@
 
     <!--  Home screen  -->
     <string name="suggested_for_you">Suggested for you…</string>
-    <string name="trending_actors">Trending actors</string>
-    <string name="top_artist_of_2023">Top 3 Artists of The Year: 2023</string>
-    <string name="trending_actress">Trending actress</string>
+    <string name="popular_actors">Popular actors</string>
+    <string name="trending_artist_today">Trending Artist Today</string>
+    <string name="popular_actress">Popular actress</string>
     <string name="view_all">View all</string>
 
     <!--  Search screen  -->

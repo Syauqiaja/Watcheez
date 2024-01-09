@@ -21,10 +21,10 @@ import javax.inject.Singleton
 class PeopleRepository @Inject constructor(
     private val apiHelper: ApiHelper
 ): IPeopleRepository {
-    override fun getPopularPeople(): Flow<ApiResponse<List<People>>>{
+    override fun getTrendingPeople(): Flow<ApiResponse<List<People>>>{
         return flow{
             try {
-                val response = apiHelper.getPopularPeople()
+                val response = apiHelper.getTrendingPeople("day")
                 val dataArray = response.results.subList(0,4).toPeopleArrayList()
                 if(dataArray.isNotEmpty()){
                     emit(ApiResponse.Success(dataArray))
@@ -37,10 +37,10 @@ class PeopleRepository @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
-    override fun getTrendingPeople() : Flow<ApiResponse<List<People>>> {
+    override fun getPopularPeople() : Flow<ApiResponse<List<People>>> {
         return flow{
             try {
-                val response = apiHelper.getTrendingPeople("day")
+                val response = apiHelper.getPopularPeople()
                 val dataArray = response.results.toPeopleArrayList()
                 if(dataArray.isNotEmpty()){
                     emit(ApiResponse.Success(dataArray))

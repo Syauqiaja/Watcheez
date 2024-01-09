@@ -11,7 +11,7 @@ data class PeopleResponse(
 	val popularity: Double? = null,
 
     @field:SerializedName("known_for")
-	val knownFor: List<KnownForItem?>? = null,
+	val knownFor: List<KnownForItem>? = null,
 
     @field:SerializedName("name")
 	val name: String,

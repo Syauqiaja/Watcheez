@@ -5,16 +5,16 @@ import com.google.gson.annotations.SerializedName
 data class KnownForItem(
 
     @field:SerializedName("overview")
-    val overview: String? = null,
+    val overview: String,
 
     @field:SerializedName("video")
-    val video: Boolean? = null,
+    val video: Boolean,
 
     @field:SerializedName("title")
     val title: String,
 
     @field:SerializedName("genre_ids")
-    val genreIds: List<Int>?,
+    val genreIds: List<Int>,
 
     @field:SerializedName("poster_path")
     val posterPath: String? = null,
