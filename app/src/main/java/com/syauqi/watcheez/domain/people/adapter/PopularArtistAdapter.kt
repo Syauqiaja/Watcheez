@@ -10,7 +10,7 @@ import com.syauqi.watcheez.utils.enums.ImageSize
 import com.syauqi.watcheez.utils.asRemoteImagePath
 
 class PopularArtistAdapter : BaseAdapter<ItemActorPosterBinding, People>(
-    inflateMethod = {parent, viewType ->
+    inflateMethod = {parent, _ ->
         ItemActorPosterBinding.inflate(LayoutInflater.from(parent.context),parent,false)
     }
 ) {

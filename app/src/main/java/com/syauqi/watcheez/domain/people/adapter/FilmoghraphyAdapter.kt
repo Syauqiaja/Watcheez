@@ -11,7 +11,7 @@ import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 
 class FilmoghraphyAdapter: BaseAdapter<ItemFilmographyBinding, CastItem>(
-    inflateMethod = {parent, viewType ->
+    inflateMethod = {parent, _ ->
         ItemFilmographyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 ){

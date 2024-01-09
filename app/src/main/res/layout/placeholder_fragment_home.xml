@@ -23,9 +23,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:fontFamily="@font/inter_bold"
-                android:text="@string/suggested_for_you"
-                android:textColor="@color/text_body"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
     </Toolbar>
@@ -63,8 +60,6 @@
             app:layout_constraintTop_toBottomOf="@id/card_recommended_movie"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             android:layout_marginTop="24dp"
-            android:textColor="@color/text_body"
-            android:text="@string/popular_actors"
             style="@style/TextAppearance.AppCompat.Headline5"/>
 
         <com.google.android.material.divider.MaterialDivider
@@ -73,16 +68,6 @@
             app:dividerColor="@color/primary_200"
             app:layout_constraintEnd_toEndOf="@id/tv_popular_actors_title"
             app:layout_constraintTop_toBottomOf="@id/tv_popular_actors_title"/>
-        <TextView
-            android:id="@+id/tv_popular_actors_viewall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/view_all"
-            app:layout_constraintEnd_toEndOf="@id/end_gl"
-            app:layout_constraintTop_toTopOf="@id/tv_popular_actors_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_popular_actors_title"
-            android:textColor="@color/primary_base"
-            style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"/>
         <LinearLayout
             android:id="@+id/rv_popular_actors"
             android:layout_width="0dp"
@@ -100,12 +85,14 @@
                 android:background="@color/shimmer"
                 app:shapeAppearance="@style/ShapeAppearanceOverlay.RoundedCornerCard.16dp"
                 android:layout_marginHorizontal="4dp"/>
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="130dp"
                 android:layout_height="180dp"
+                android:layout_marginHorizontal="4dp"
                 android:background="@color/shimmer"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.RoundedCornerCard.16dp"
-                android:layout_marginHorizontal="4dp"/>
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.RoundedCornerCard.16dp" />
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="130dp"
                 android:layout_height="180dp"
@@ -121,8 +108,6 @@
             app:layout_constraintTop_toBottomOf="@id/rv_popular_actors"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             android:layout_marginTop="24dp"
-            android:textColor="@color/text_body"
-            android:text="@string/popular_actress"
             style="@style/TextAppearance.AppCompat.Headline5"/>
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="72dp"
@@ -130,16 +115,6 @@
             app:dividerColor="@color/error_light"
             app:layout_constraintEnd_toEndOf="@id/tv_popular_actress_title"
             app:layout_constraintTop_toBottomOf="@id/tv_popular_actress_title"/>
-        <TextView
-            android:id="@+id/tv_popular_actress_viewall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/view_all"
-            app:layout_constraintEnd_toEndOf="@id/end_gl"
-            app:layout_constraintTop_toTopOf="@id/tv_popular_actress_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_popular_actress_title"
-            android:textColor="@color/primary_base"
-            style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"/>
         <LinearLayout
             android:id="@+id/rv_popular_actress"
             android:layout_width="0dp"
@@ -177,8 +152,6 @@
             app:layout_constraintTop_toBottomOf="@id/rv_popular_actress"
             app:layout_constraintStart_toStartOf="@id/start_gl"
             android:layout_marginTop="24dp"
-            android:textColor="@color/text_body"
-            android:text="@string/trending_artist_today"
             style="@style/TextAppearance.AppCompat.Headline5"/>
 
         <com.google.android.material.divider.MaterialDivider
@@ -258,36 +231,6 @@
                         android:layout_marginEnd="4dp"
                         android:text="@string/sample_actor_popularity"
                         style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"
-                        android:textColor="@color/transparent"
-                        android:background="@color/shimmer"/>
-
-                    <TextView
-                        android:id="@+id/tv_known_for_title"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/iv_icon_popularity"
-                        app:layout_constraintStart_toEndOf="@id/iv_actor_profile_head"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="8dp"
-                        android:ellipsize="end"
-                        android:maxLines="3"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/known_for"
-                        style="@style/TextAppearance.AppCompat.Body.Medium.SemiBold"
-                        android:textColor="@color/transparent"
-                        android:background="@color/shimmer"/>
-                    <TextView
-                        android:id="@+id/tv_known_for_value"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/tv_known_for_title"
-                        app:layout_constraintStart_toEndOf="@id/iv_actor_profile_head"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/sample_known_for"
-                        style="@style/TextAppearance.AppCompat.Body.Medium.Medium"
                         android:textColor="@color/transparent"
                         android:background="@color/shimmer"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>

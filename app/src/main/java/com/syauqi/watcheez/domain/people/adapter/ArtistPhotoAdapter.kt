@@ -10,7 +10,7 @@ import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 
 class ArtistPhotoAdapter: BaseAdapter<ItemActorPhotosBinding, ImageItem>(
-    inflateMethod = {parent, viewType ->
+    inflateMethod = {parent, _ ->
         ItemActorPhotosBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 ) {

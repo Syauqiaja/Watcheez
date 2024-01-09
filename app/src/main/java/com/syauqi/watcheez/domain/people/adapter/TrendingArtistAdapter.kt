@@ -10,7 +10,7 @@ import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 
 class TrendingArtistAdapter: BaseAdapter<ItemArtistOfTheYearBinding, People>(
-    inflateMethod = {parent, viewType ->
+    inflateMethod = { parent, _ ->
         ItemArtistOfTheYearBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 ) {

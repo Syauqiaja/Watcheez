@@ -45,10 +45,12 @@ class FavoriteArtistFragment : BaseFragment<FragmentFavoriteArtistBinding>(
                 is Resource.Success -> {
                     showLoading(false)
                     searchArtistAdapter.setData(result.data!!)
+                    binding.rvFavoriteArtist.visibility = View.VISIBLE
                     binding.emptyLayout.visibility = View.GONE
                 }
                 is Resource.Error -> {
                     showLoading(false)
+                    binding.rvFavoriteArtist.visibility = View.GONE
                     binding.emptyLayout.visibility = View.VISIBLE
                 }
                 is Resource.Loading -> {

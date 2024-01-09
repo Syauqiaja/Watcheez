@@ -29,12 +29,14 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
     private val viewModel : DetailArtistViewModel by viewModels()
     private val filmoghraphyAdapter = FilmoghraphyAdapter()
     private val artistPhotoAdapter = ArtistPhotoAdapter()
+    private lateinit var player: Player
     private lateinit var people: People
 
 
     override fun initView() {
         super.initView()
         people = args.people
+        player = setupVideoPlayer()
         binding.apply {
             updateSaveButton()
             tvActorName.text = people.name
@@ -45,7 +47,7 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
                 .into(ivActorProfileHead)
             rvActorPhotos.adapter = artistPhotoAdapter
             rvFilmography.adapter = filmoghraphyAdapter
-            videoPlayer.player = setupVideoPlayer()
+            videoPlayer.player = player
 
             btnActionBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -88,6 +90,11 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
             exoPlayer.setMediaItem(videoItem)
             exoPlayer.prepare()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        player.release()
     }
 
     private fun updateSaveButton(){

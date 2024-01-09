@@ -29,7 +29,7 @@ open class BaseAdapter<B: ViewBinding, T>(
         init {
             if(onItemClick != null)
             binding.root.setOnClickListener {
-                onItemClick?.invoke(_listData[adapterPosition])
+                onItemClick?.invoke(_listData[bindingAdapterPosition])
             }
         }
     }

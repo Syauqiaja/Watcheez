@@ -56,14 +56,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun observeViewModel() {
         super.observeViewModel()
         viewModel.apply {
-            popularArtist.observe(requireActivity()){ result ->
+            popularArtist.observe(viewLifecycleOwner){ result ->
                 when(result){
                     is Resource.Success -> {
                         val actorList = result.data?.filter { it.gender == Gender.MALE.ordinal }
-                        actorList?.let { popularActorAdapter.setData(it) }
+                        actorList?.let {
+                            if(it.size > 5) popularActorAdapter.setData(it.subList(0,5))
+                            else popularActorAdapter.setData(it)
+                        }
 
                         val actressList = result.data?.filter { it.gender == Gender.FEMALE.ordinal }
-                        actressList?.let { popularActressAdapter.setData(it) }
+                        actressList?.let {
+                            if(it.size > 5)  popularActressAdapter.setData(it.subList(0,5))
+                            else popularActressAdapter.setData(it)
+                        }
                         hideShimmer()
                     }
                     is Resource.Loading -> {
@@ -74,10 +80,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
 
-            trendingArtist.observe(requireActivity()){ result ->
+            trendingArtist.observe(viewLifecycleOwner){ result ->
                 when(result){
                     is Resource.Success -> {
-                        result.data?.let { trendingArtistAdapter.setData(it) }
+                        result.data?.let {
+                            if(it.size > 4) trendingArtistAdapter.setData(it.subList(0,4))
+                            else trendingArtistAdapter.setData(it)
+                        }
                         hideShimmer()
                     }
                     is Resource.Loading -> {
@@ -88,7 +97,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
 
-            trendingMovie.observe(requireActivity()){result ->
+            trendingMovie.observe(viewLifecycleOwner){result ->
                 when(result){
                     is Resource.Success -> {
                         if(result.data != null){

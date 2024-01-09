@@ -83,16 +83,6 @@
                         app:dividerColor="@color/primary_200"
                         app:layout_constraintEnd_toEndOf="@id/tv_popular_actors_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_popular_actors_title"/>
-                    <TextView
-                        android:id="@+id/tv_popular_actors_viewall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/view_all"
-                        app:layout_constraintEnd_toEndOf="@id/end_gl"
-                        app:layout_constraintTop_toTopOf="@id/tv_popular_actors_title"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_popular_actors_title"
-                        android:textColor="@color/primary_base"
-                        style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"/>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_popular_actors"
                         android:layout_width="0dp"
@@ -125,16 +115,6 @@
                         app:dividerColor="@color/error_light"
                         app:layout_constraintEnd_toEndOf="@id/tv_popular_actress_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_popular_actress_title"/>
-                    <TextView
-                        android:id="@+id/tv_popular_actress_viewall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/view_all"
-                        app:layout_constraintEnd_toEndOf="@id/end_gl"
-                        app:layout_constraintTop_toTopOf="@id/tv_popular_actress_title"
-                        app:layout_constraintBottom_toBottomOf="@id/tv_popular_actress_title"
-                        android:textColor="@color/primary_base"
-                        style="@style/TextAppearance.AppCompat.Body.Large.SemiBold"/>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_popular_actress"
                         android:layout_width="0dp"

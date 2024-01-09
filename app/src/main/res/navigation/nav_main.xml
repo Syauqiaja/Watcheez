@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_itemActor_to_actorDetailFragment"
-            app:destination="@id/detail_artist_fragment"/>
+            app:destination="@id/detail_artist_fragment"
+            app:enterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/search_fragment"/>
@@ -26,8 +28,8 @@
         <action
             android:id="@+id/action_search_fragment_to_detail_artist_fragment"
             app:destination="@id/detail_artist_fragment"
-            app:enterAnim="@animator/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
@@ -37,7 +39,9 @@
         tools:layout="@layout/fragment_favorite_artist">
         <action
             android:id="@+id/action_favorite_fragment_to_detail_artist_fragment2"
-            app:destination="@id/detail_artist_fragment" />
+            app:destination="@id/detail_artist_fragment"
+            app:enterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
