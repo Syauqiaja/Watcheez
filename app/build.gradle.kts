@@ -44,6 +44,9 @@ android {
 }
 
 dependencies {
+    val room_version = "2.6.1"
+    val nav_version = "2.7.6"
+    val hilt_version = "2.50"
 //    Core
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -52,8 +55,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
 
 //    Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
 //    Test Implementation
     testImplementation("junit:junit:4.13.2")
@@ -61,9 +64,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 //    Dependency Injection
-    implementation("com.google.dagger:hilt-android:2.50")
-    annotationProcessor("com.google.dagger:hilt-compiler:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
 
 //    Network Retrofit
@@ -87,6 +90,12 @@ dependencies {
     implementation("androidx.media3:media3-exoplayer:1.2.0")
     implementation("androidx.media3:media3-ui:1.2.0")
     implementation("androidx.media3:media3-session:1.2.0")
+
+//    Room
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("androidx.room:room-paging:$room_version")
 }
 kapt {
     correctErrorTypes = true

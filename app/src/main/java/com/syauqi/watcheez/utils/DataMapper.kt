@@ -1,10 +1,12 @@
 package com.syauqi.watcheez.utils
 
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
+import com.syauqi.watcheez.core.data.source.network.response.people.KnownForItem
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
 import com.syauqi.watcheez.domain.model.People
 import com.syauqi.watcheez.domain.model.PersonDetail
+import java.lang.StringBuilder
 
 object DataMapper {
     fun List<PeopleEntity>.toPeopleArrayList():ArrayList<People>{
@@ -83,5 +85,14 @@ object DataMapper {
             castItem -> castItem.backdropPath != null
         },
         )
+    }
+
+    fun List<KnownForItem>.toStringOfTitles(limit: Int): String{
+        val builder = StringBuilder()
+        val newList = if(this.size > limit) this.subList(0,limit) else this
+        newList.map {
+            builder.append(it.title)
+        }
+        return builder.toString()
     }
 }

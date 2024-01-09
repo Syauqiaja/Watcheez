@@ -1,7 +1,6 @@
 package com.syauqi.watcheez.core.di
 
 import com.google.gson.GsonBuilder
-import com.syauqi.watcheez.core.data.PeopleRepository
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelperImpl
 import com.syauqi.watcheez.core.data.source.network.api.ApiService
@@ -21,7 +20,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+class NetworkModule {
     @Provides
     fun provideBaseUrl() = Constants.BASE_URL
 

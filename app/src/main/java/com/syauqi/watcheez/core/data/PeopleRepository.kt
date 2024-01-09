@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import retrofit2.HttpException
 import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -62,5 +63,19 @@ class PeopleRepository @Inject constructor(
                 emit(ApiResponse.Error(e.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    override fun searchPeopleByQuery(query: String): Flow<ApiResponse<List<People>>> {
+        return flow {
+            try {
+                val response = apiHelper.searchPeopleByQuery(query)
+                emit(ApiResponse.Success(response.results.toPeopleArrayList()))
+            }catch (e: HttpException){
+                Log.e("MovieRepository", e.message.toString())
+                emit(ApiResponse.Error(e.message.toString()))
+            }catch (e: Exception){
+                Log.e("MovieRepository", e.message.toString())
+            }
+        }
     }
 }

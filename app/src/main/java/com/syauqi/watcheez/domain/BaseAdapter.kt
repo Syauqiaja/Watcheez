@@ -1,5 +1,6 @@
 package com.syauqi.watcheez.domain
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,11 +15,13 @@ open class BaseAdapter<B: ViewBinding, T>(
     private val _listData = ArrayList<T>()
     var onItemClick : ((T) -> Unit)? = null
     fun setData(datas: List<T>){
+        notifyItemRangeRemoved(0, _listData.size);
         _listData.clear()
         _listData.addAll(datas)
-        notifyItemRangeInserted(0,datas.size)
+        notifyItemRangeInserted(0,_listData.size)
     }
     open fun bindView(data: T, binding: B, itemView: View){}
+    @SuppressLint("SuspiciousIndentation")
     inner class ListViewHolder(private val binding: B): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: T){
             bindView(data, binding, itemView)

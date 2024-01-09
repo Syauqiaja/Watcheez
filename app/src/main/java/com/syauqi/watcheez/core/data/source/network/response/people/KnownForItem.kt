@@ -7,17 +7,14 @@ data class KnownForItem(
     @field:SerializedName("overview")
     val overview: String? = null,
 
-    @field:SerializedName("original_title")
-    val originalTitle: String? = null,
-
     @field:SerializedName("video")
     val video: Boolean? = null,
 
     @field:SerializedName("title")
-    val title: String? = null,
+    val title: String,
 
     @field:SerializedName("genre_ids")
-    val genreIds: List<Int?>? = null,
+    val genreIds: List<Int>?,
 
     @field:SerializedName("poster_path")
     val posterPath: String? = null,
@@ -32,8 +29,9 @@ data class KnownForItem(
     val releaseDate: String? = null,
 
     @field:SerializedName("popularity")
-    val popularity: Any? = null,
+    val popularity: Double?,
+    
     @field:SerializedName("id")
-    val id: Int? = null
+    val id: Int
 
 )

@@ -12,4 +12,5 @@ class ApiHelperImpl @Inject constructor(
     override suspend fun getTrendingPeople(timeWindow: String) = apiService.getTrendingPeople(timeWindow)
     override suspend fun getPopularPeople(): BaseResponse<PeopleResponse> = apiService.getPopularPeople()
     override suspend fun getPersonById(id: Int): PersonDetailResponse = apiService.getPersonById(id)
+    override suspend fun searchPeopleByQuery(query: String): BaseResponse<PeopleResponse> = apiService.searchPeopleByQuery(query)
 }

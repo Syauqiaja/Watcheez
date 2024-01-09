@@ -9,4 +9,5 @@ interface ApiHelper {
     suspend fun getTrendingPeople(timeWindow: String) : BaseResponse<PeopleResponse>
     suspend fun getPopularPeople(): BaseResponse<PeopleResponse>
     suspend fun getPersonById(id: Int): PersonDetailResponse
+    suspend fun searchPeopleByQuery(query: String): BaseResponse<PeopleResponse>
 }
