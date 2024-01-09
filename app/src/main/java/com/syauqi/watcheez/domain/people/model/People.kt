@@ -1,7 +1,7 @@
-package com.syauqi.watcheez.domain.model
+package com.syauqi.watcheez.domain.people.model
 
 import android.os.Parcelable
-import com.syauqi.watcheez.core.data.source.network.response.people.KnownForItem
+import com.syauqi.watcheez.domain.movie.model.Movie
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

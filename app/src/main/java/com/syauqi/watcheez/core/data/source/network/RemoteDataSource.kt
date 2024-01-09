@@ -1,11 +1,13 @@
-package com.syauqi.watcheez.core.data
+package com.syauqi.watcheez.core.data.source.network
 
 import android.util.Log
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
-import com.syauqi.watcheez.domain.model.People
-import com.syauqi.watcheez.domain.model.PersonDetail
-import com.syauqi.watcheez.domain.repository.IPeopleRepository
+import com.syauqi.watcheez.core.data.source.network.response.people.BaseResponse
+import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
+import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
+import com.syauqi.watcheez.domain.people.model.People
+import com.syauqi.watcheez.domain.people.model.PersonDetail
 import com.syauqi.watcheez.utils.DataMapper.toPeopleArrayList
 import com.syauqi.watcheez.utils.DataMapper.toPersonDetail
 import kotlinx.coroutines.Dispatchers
@@ -18,63 +20,65 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class PeopleRepository @Inject constructor(
+class RemoteDataSource @Inject constructor(
     private val apiHelper: ApiHelper
-): IPeopleRepository {
-    override fun getTrendingPeople(): Flow<ApiResponse<List<People>>>{
+) {
+    fun getTrendingPeople(): Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
         return flow{
             try {
                 val response = apiHelper.getTrendingPeople("day")
-                val dataArray = response.results.subList(0,4).toPeopleArrayList()
+                val dataArray = response.results
                 if(dataArray.isNotEmpty()){
-                    emit(ApiResponse.Success(dataArray))
+                    emit(ApiResponse.Success(response))
                 }else{
                     emit(ApiResponse.Empty)
                 }
             }catch (e: Exception){
-                Log.e("MovieRepository", e.message.toString())
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }.flowOn(Dispatchers.IO)
-    }
-    override fun getPopularPeople() : Flow<ApiResponse<List<People>>> {
-        return flow{
-            try {
-                val response = apiHelper.getPopularPeople()
-                val dataArray = response.results.toPeopleArrayList()
-                if(dataArray.isNotEmpty()){
-                    emit(ApiResponse.Success(dataArray))
-                }else{
-                    emit(ApiResponse.Empty)
-                }
-            }catch (e: Exception){
-                Log.e("MovieRepository", e.message.toString())
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }.flowOn(Dispatchers.IO)
-    }
-    override fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetail>>{
-        return flow {
-            try {
-                val response = apiHelper.getPersonById(id)
-                emit(ApiResponse.Success(response.toPersonDetail()))
-            }catch (e: Exception){
-                Log.e("MovieRepository", e.message.toString())
+                Log.e("RemoteDataSource", e.message.toString())
                 emit(ApiResponse.Error(e.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun searchPeopleByQuery(query: String): Flow<ApiResponse<List<People>>> {
+    fun getPopularPeople() : Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
+        return flow{
+            try {
+                val response = apiHelper.getPopularPeople()
+                val dataArray = response.results
+                if(dataArray.isNotEmpty()){
+                    emit(ApiResponse.Success(response))
+                }else{
+                    emit(ApiResponse.Empty)
+                }
+            }catch (e: Exception){
+                Log.e("RemoteDataSource", e.message.toString())
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetailResponse>>{
+        return flow {
+            try {
+                val response = apiHelper.getPersonById(id)
+                emit(ApiResponse.Success(response))
+            }catch (e: Exception){
+                Log.e("RemoteDataSource", e.message.toString())
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun searchPeopleByQuery(query: String): Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
         return flow {
             try {
                 val response = apiHelper.searchPeopleByQuery(query)
-                emit(ApiResponse.Success(response.results.toPeopleArrayList()))
+                emit(ApiResponse.Success(response))
             }catch (e: HttpException){
-                Log.e("MovieRepository", e.message.toString())
+                Log.e("RemoteDataSource", e.message.toString())
                 emit(ApiResponse.Error(e.message.toString()))
             }catch (e: Exception){
-                Log.e("MovieRepository", e.message.toString())
+                Log.e("RemoteDataSource", e.message.toString())
             }
         }
     }

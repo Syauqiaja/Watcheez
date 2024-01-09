@@ -49,7 +49,7 @@
         tools:layout="@layout/fragment_detail_artist">
         <argument
             android:name="people"
-            app:argType="com.syauqi.watcheez.domain.model.People" />
+            app:argType="com.syauqi.watcheez.domain.people.model.People" />
     </fragment>
 
 </navigation>

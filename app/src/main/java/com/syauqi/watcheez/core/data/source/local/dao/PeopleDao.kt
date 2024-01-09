@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PeopleDao {
-    @Query("SELECT * FROM peoples")
+    @Query("SELECT * FROM peoples ORDER BY popularity DESC")
     fun getAllPeoples(): Flow<List<PeopleEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

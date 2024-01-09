@@ -1,9 +1,9 @@
 package com.syauqi.watcheez.core.di
 
-import com.syauqi.watcheez.core.data.PeopleRepository
-import com.syauqi.watcheez.domain.repository.IPeopleRepository
-import com.syauqi.watcheez.domain.usecase.PeopleInteractor
-import com.syauqi.watcheez.domain.usecase.PeopleUseCase
+import com.syauqi.watcheez.core.data.repositories.PeopleRepository
+import com.syauqi.watcheez.domain.people.repository.IPeopleRepository
+import com.syauqi.watcheez.domain.people.usecase.PeopleInteractor
+import com.syauqi.watcheez.domain.people.usecase.PeopleUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

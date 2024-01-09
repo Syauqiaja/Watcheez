@@ -2,12 +2,12 @@ package com.syauqi.watcheez.presentation.features.home
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.syauqi.watcheez.domain.adapter.PopularArtistAdapter
+import com.syauqi.watcheez.core.data.Resource
+import com.syauqi.watcheez.domain.people.adapter.PopularArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
-import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentHomeBinding
-import com.syauqi.watcheez.domain.adapter.TrendingArtistAdapter
-import com.syauqi.watcheez.domain.model.People
+import com.syauqi.watcheez.domain.people.adapter.TrendingArtistAdapter
+import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.utils.enums.Gender
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,24 +41,43 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.observeViewModel()
         viewModel.popularArtist.observe(viewLifecycleOwner){ result ->
             when(result){
-                is ApiResponse.Success -> {
-                    val actorList = result.data.filter { it.gender == Gender.MALE.ordinal }
-                    popularActorAdapter.setData(actorList)
+                is Resource.Success -> {
+                    showPopularLoading(false)
+                    val actorList = result.data?.filter { it.gender == Gender.MALE.ordinal }
+                    actorList?.let { popularActorAdapter.setData(it) }
 
-                    val actressList = result.data.filter { it.gender == Gender.FEMALE.ordinal }
-                    popularActressAdapter.setData(actressList)
+                    val actressList = result.data?.filter { it.gender == Gender.FEMALE.ordinal }
+                    actressList?.let { popularActressAdapter.setData(it) }
                 }
-                else -> {}
+                is Resource.Loading -> {
+                    showPopularLoading(true)
+                }
+                is Resource.Error -> {
+                    showPopularLoading(false)
+                }
             }
         }
         viewModel.trendingArtist.observe(viewLifecycleOwner){ result ->
             when(result){
-                is ApiResponse.Success -> {
-                    trendingArtistAdapter.setData(result.data)
+                is Resource.Success -> {
+                    showTrendingLoading(false)
+                    result.data?.let { trendingArtistAdapter.setData(it) }
                 }
-                else -> {}
+                is Resource.Loading -> {
+                    showTrendingLoading(true)
+                }
+                is Resource.Error -> {
+                    showTrendingLoading(false)
+                }
             }
         }
+    }
+
+    fun showPopularLoading(value: Boolean) {
+
+    }
+    fun showTrendingLoading(value: Boolean){
+
     }
 
 }

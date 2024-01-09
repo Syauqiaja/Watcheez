@@ -1,11 +1,11 @@
-package com.syauqi.watcheez.domain.adapter
+package com.syauqi.watcheez.domain.people.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.databinding.ItemArtistOfTheYearBinding
 import com.syauqi.watcheez.domain.BaseAdapter
-import com.syauqi.watcheez.domain.model.People
+import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 

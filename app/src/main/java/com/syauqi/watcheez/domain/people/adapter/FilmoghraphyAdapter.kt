@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.domain.adapter
+package com.syauqi.watcheez.domain.people.adapter
 
 import android.view.LayoutInflater
 import android.view.View

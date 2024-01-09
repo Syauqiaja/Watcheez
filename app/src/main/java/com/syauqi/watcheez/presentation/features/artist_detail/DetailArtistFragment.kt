@@ -10,10 +10,11 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.R
+import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentDetailArtistBinding
-import com.syauqi.watcheez.domain.adapter.ArtistPhotoAdapter
-import com.syauqi.watcheez.domain.adapter.FilmoghraphyAdapter
+import com.syauqi.watcheez.domain.people.adapter.ArtistPhotoAdapter
+import com.syauqi.watcheez.domain.people.adapter.FilmoghraphyAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
@@ -44,9 +45,9 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
 
         viewModel.peopleDetail(people.id).observe(viewLifecycleOwner){result ->
             when(result){
-                is ApiResponse.Success -> {
+                is Resource.Success -> {
                     binding.apply {
-                        result.data.also {
+                        result.data?.also {
                             tvActorStoryDesc.text = it.biography
                             tvBornValuePlace.text = it.placeOfBirth
                             tvBornValueDate.text = it.birthday

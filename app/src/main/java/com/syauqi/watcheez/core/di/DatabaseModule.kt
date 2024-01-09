@@ -2,7 +2,7 @@ package com.syauqi.watcheez.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.syauqi.watcheez.core.data.source.local.MoviesDatabase
+import com.syauqi.watcheez.core.data.source.local.database.MoviesDatabase
 import com.syauqi.watcheez.core.data.source.local.dao.MoviesDao
 import com.syauqi.watcheez.core.data.source.local.dao.PeopleDao
 import com.syauqi.watcheez.core.data.source.local.dao.RemoteKeysDao

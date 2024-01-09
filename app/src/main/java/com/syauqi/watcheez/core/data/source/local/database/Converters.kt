@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.core.data.source.local
+package com.syauqi.watcheez.core.data.source.local.database
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

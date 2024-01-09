@@ -18,4 +18,5 @@ class LocalDataSource @Inject constructor(
     fun getAllPeoples(): Flow<List<PeopleEntity>> = peopleDao.getAllPeoples()
     fun searchPeopleByQuery(query: String) : Flow<List<PeopleEntity>> = peopleDao.searchPeople(query)
     fun getAllPeopleWithMovies(): Flow<List<PeopleWithMoviesEntity>> = peopleDao.getPeopleWithMovies()
+    suspend fun insertAlPeople(listPeople: List<PeopleEntity>) = peopleDao.insertAll(listPeople)
 }

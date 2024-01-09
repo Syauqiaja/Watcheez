@@ -6,9 +6,9 @@ import com.syauqi.watcheez.core.data.source.local.entity.people_w_movies.PeopleW
 import com.syauqi.watcheez.core.data.source.network.response.people.KnownForItem
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
-import com.syauqi.watcheez.domain.model.Movie
-import com.syauqi.watcheez.domain.model.People
-import com.syauqi.watcheez.domain.model.PersonDetail
+import com.syauqi.watcheez.domain.movie.model.Movie
+import com.syauqi.watcheez.domain.people.model.People
+import com.syauqi.watcheez.domain.people.model.PersonDetail
 import java.lang.StringBuilder
 
 object DataMapper {
@@ -31,21 +31,22 @@ object DataMapper {
     fun List<PeopleResponse>.toPeopleEntityArrayList():List<PeopleEntity>{
         val result = ArrayList<PeopleEntity>()
         this.map { peopleResponse ->
-            if(peopleResponse.profilePath != null && peopleResponse.popularity != null)
-            result.add(
-                PeopleEntity(
-                    id = peopleResponse.id,
-                    name = peopleResponse.name,
-                    photoUrl = peopleResponse.profilePath,
-                    popularity = peopleResponse.popularity,
-                    gender = peopleResponse.gender
+            if(peopleResponse.profilePath != null && peopleResponse.popularity != null){
+                result.add(
+                    PeopleEntity(
+                        id = peopleResponse.id,
+                        name = peopleResponse.name,
+                        photoUrl = peopleResponse.profilePath,
+                        popularity = peopleResponse.popularity,
+                        gender = peopleResponse.gender
+                    )
                 )
-            )
+            }
         }
         return result
     }
 
-    fun PeopleWithMoviesEntity.toPeople(): People{
+    fun PeopleWithMoviesEntity.toPeople(): People {
         val peopleEntity = peopleEntity
         return People(
             id = peopleEntity.id,
@@ -81,7 +82,7 @@ object DataMapper {
             )
         }
     }
-
+//
     fun List<PeopleResponse>.toPeopleArrayList():List<People>{
         val result = ArrayList<People>()
         this.map { peopleResponse ->
@@ -103,7 +104,7 @@ object DataMapper {
         )
     }
 
-    fun PeopleEntity.toPeople(): People{
+    fun PeopleEntity.toPeople(): People {
         return People(
             id = this.id,
             name = this.name,
@@ -126,7 +127,7 @@ object DataMapper {
         )
     }
 
-    private fun MovieEntity.toMovie(): Movie{
+    private fun MovieEntity.toMovie(): Movie {
         return Movie(
             id = id,
             title = title,
@@ -139,7 +140,7 @@ object DataMapper {
         )
     }
 
-    fun PersonDetailResponse.toPersonDetail(): PersonDetail{
+    fun PersonDetailResponse.toPersonDetail(): PersonDetail {
         return PersonDetail(
         birthday =   this.birthday,
         gender = this.gender,

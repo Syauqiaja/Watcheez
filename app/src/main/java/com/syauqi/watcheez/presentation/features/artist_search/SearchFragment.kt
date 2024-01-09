@@ -4,9 +4,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentSearchBinding
-import com.syauqi.watcheez.domain.adapter.SearchArtistAdapter
+import com.syauqi.watcheez.domain.people.adapter.SearchArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +36,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     query?.let { viewModel.searchPeopleByQuery(it).observe(viewLifecycleOwner){result ->
                         when(result){
-                            is ApiResponse.Success -> {
-                                searchArtistAdapter.setData(result.data)
+                            is Resource.Success -> {
+                                result.data?.let { data -> searchArtistAdapter.setData(data) }
                             }
                             else -> {}
                         }
