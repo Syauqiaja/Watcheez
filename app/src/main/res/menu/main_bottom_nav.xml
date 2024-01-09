@@ -13,9 +13,5 @@
         android:id="@+id/favorite_fragment"
         android:title="@string/favorite"
         android:icon="@drawable/ic_bookmark_outline"/>
-    <item
-        android:id="@+id/settings_fragment"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_settings_outline"/>
 
 </menu>

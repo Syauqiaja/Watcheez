@@ -34,13 +34,11 @@
         android:id="@+id/favorite_fragment"
         android:name="com.syauqi.watcheez.presentation.features.artist_favorite.FavoriteArtistFragment"
         android:label="Favorite Artist"
-        tools:layout="@layout/fragment_favorite_artist"/>
-
-    <fragment
-        android:id="@+id/settings_fragment"
-        android:name="com.syauqi.watcheez.presentation.features.settings.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/fragment_settings"/>
+        tools:layout="@layout/fragment_favorite_artist">
+        <action
+            android:id="@+id/action_favorite_fragment_to_detail_artist_fragment2"
+            app:destination="@id/detail_artist_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/detail_artist_fragment"

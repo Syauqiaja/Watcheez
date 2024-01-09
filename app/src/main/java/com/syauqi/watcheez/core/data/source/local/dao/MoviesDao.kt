@@ -12,7 +12,7 @@ interface MoviesDao {
     @Query("SELECT * FROM movies")
     fun getAllMovies(): List<MovieEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(moviesData: List<MovieEntity>)
 
     @Query("DELETE FROM movies")

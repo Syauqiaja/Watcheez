@@ -7,15 +7,17 @@ import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
-import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentDetailArtistBinding
 import com.syauqi.watcheez.domain.people.adapter.ArtistPhotoAdapter
 import com.syauqi.watcheez.domain.people.adapter.FilmoghraphyAdapter
+import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.presentation.base.BaseFragment
+import com.syauqi.watcheez.utils.DataMapper.switchFavorite
 import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.ImageSize
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,11 +29,14 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
     private val viewModel : DetailArtistViewModel by viewModels()
     private val filmoghraphyAdapter = FilmoghraphyAdapter()
     private val artistPhotoAdapter = ArtistPhotoAdapter()
+    private lateinit var people: People
+
 
     override fun initView() {
         super.initView()
-        val people = args.people
+        people = args.people
         binding.apply {
+            updateSaveButton()
             tvActorName.text = people.name
             tvArtistPopularity.text = String.format("%.2f", people.popularity)
             Glide.with(this@DetailArtistFragment)
@@ -41,6 +46,15 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
             rvActorPhotos.adapter = artistPhotoAdapter
             rvFilmography.adapter = filmoghraphyAdapter
             videoPlayer.player = setupVideoPlayer()
+
+            btnActionBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            btnActionSave.setOnClickListener {
+                people = people.switchFavorite()
+                viewModel.setPeopleFavorite(people)
+                updateSaveButton()
+            }
         }
 
         viewModel.peopleDetail(people.id).observe(viewLifecycleOwner){result ->
@@ -82,6 +96,15 @@ class DetailArtistFragment : BaseFragment<FragmentDetailArtistBinding>(FragmentD
             controller.hide(WindowInsetsCompat.Type.systemBars())
             controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
+    }
+
+    private fun updateSaveButton(){
+        val drawable = if(people.isFavorite){
+            R.drawable.ic_bookmark_filled
+        }else{
+            R.drawable.ic_bookmark_outline
+        }
+        binding.btnActionSave.setImageResource(drawable)
     }
 
 }

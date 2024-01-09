@@ -47,4 +47,6 @@
     <string name="your_favorite_artists">Your favorite artists</string>
     <string name="imdb_id">IMDb Id : %s</string>
     <string name="loading_content">Loading content...</string>
+    <string name="popularity_format">%s Popularity</string>
+    <string name="we_didn_t_find_anything">We didn\'t find anything</string>
 </resources>

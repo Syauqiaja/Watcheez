@@ -11,5 +11,5 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(peopleUseCase: PeopleUseCase, movieUseCase: MovieUseCase):ViewModel() {
     val popularArtist = peopleUseCase.getPopularPeople().asLiveData()
     val trendingArtist = peopleUseCase.getTrendingPeople().asLiveData()
-    val getTrendingMovie = movieUseCase.getTrendingMovies(1).asLiveData()
+    val trendingMovie = movieUseCase.getTrendingMovies(1).asLiveData()
 }

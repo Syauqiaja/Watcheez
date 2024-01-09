@@ -11,4 +11,6 @@ interface IPeopleRepository {
     fun getTrendingPeople(): Flow<Resource<List<People>>>
     fun getPeopleById(id: Int): Flow<Resource<PersonDetail?>>
     fun searchPeopleByQuery(query: String): Flow<Resource<List<People>>>
+    fun setPeopleFavorite(people: People)
+    fun getFavoritePeople(): Flow<Resource<List<People>>>
 }

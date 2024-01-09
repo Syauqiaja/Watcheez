@@ -1,5 +1,8 @@
 package com.syauqi.watcheez.presentation.features.artist_search
 
+import android.opengl.Visibility
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,7 +22,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     override fun initView() {
         super.initView()
 
+        searchArtistAdapter.onItemClick = {
+            val action = SearchFragmentDirections.actionSearchFragmentToDetailArtistFragment(it)
+            findNavController().navigate(action)
+        }
+
         binding.apply {
+            emptyLayout.visibility = View.GONE
+            progressBar.visibility = View.GONE
+
             rvResult.apply {
                 adapter = searchArtistAdapter
                 searchArtistAdapter.also {
@@ -34,14 +45,28 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    query?.let { viewModel.searchPeopleByQuery(it).observe(viewLifecycleOwner){result ->
+                    val q = query ?: ""
+                    viewModel.searchPeopleByQuery(q).observe(viewLifecycleOwner){result ->
                         when(result){
                             is Resource.Success -> {
-                                result.data?.let { data -> searchArtistAdapter.setData(data) }
+                                showLoading(false)
+                                if(result.data.isNullOrEmpty()){
+                                    showEmpty(true)
+                                }else{
+                                    showEmpty(false)
+                                    searchArtistAdapter.setData(result.data)
+                                }
                             }
-                            else -> {}
+                            is Resource.Loading -> {
+                                showLoading(true)
+                            }
+                            is Resource.Error -> {
+                                showLoading(false)
+                                showEmpty(true)
+                                Toast.makeText(requireContext(), "Error occured", Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }}
+                    }
                     return false
                 }
 
@@ -50,6 +75,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 }
 
             })
+        }
+    }
+
+    fun showLoading(value: Boolean){
+        binding.progressBar.visibility = if(value){
+            binding.emptyLayout.visibility = View.GONE
+            View.VISIBLE
+        }else{
+            View.GONE
+        }
+    }
+
+    fun showEmpty(value: Boolean){
+        binding.rvResult.visibility = if(value){
+            View.GONE
+        }else{
+            View.VISIBLE
+        }
+
+        binding.emptyLayout.visibility = if(value){
+            View.VISIBLE
+        }else{
+            View.GONE
         }
     }
 }

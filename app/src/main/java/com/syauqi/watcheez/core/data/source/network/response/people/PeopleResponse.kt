@@ -1,6 +1,7 @@
 package com.syauqi.watcheez.core.data.source.network.response.people
 
 import com.google.gson.annotations.SerializedName
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
 
 data class PeopleResponse(
 
@@ -11,7 +12,7 @@ data class PeopleResponse(
 	val popularity: Double? = null,
 
     @field:SerializedName("known_for")
-	val knownFor: List<KnownForItem>? = null,
+	val knownFor: List<MovieResponse>? = null,
 
     @field:SerializedName("name")
 	val name: String,

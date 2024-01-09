@@ -1,14 +1,23 @@
 package com.syauqi.watcheez.presentation.features.home
 
+import android.opengl.Visibility
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.domain.people.adapter.PopularArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.databinding.FragmentHomeBinding
+import com.syauqi.watcheez.domain.BaseAdapter
 import com.syauqi.watcheez.domain.people.adapter.TrendingArtistAdapter
 import com.syauqi.watcheez.domain.people.model.People
+import com.syauqi.watcheez.utils.MovieGenres
+import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.Gender
+import com.syauqi.watcheez.utils.enums.ImageSize
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,9 +27,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val popularActressAdapter: PopularArtistAdapter = PopularArtistAdapter()
     private val trendingArtistAdapter: TrendingArtistAdapter = TrendingArtistAdapter()
 
+    private var trendingMovieLoaded: Boolean = false
+
     override fun initView() {
         super.initView()
         binding.apply {
+            if (!trendingMovieLoaded){
+                shimmerPlaceholder.startShimmer()
+                layoutHome.visibility = View.INVISIBLE
+            }
+
             rvPopularActors.adapter = popularActorAdapter
             popularActorAdapter.onItemClick = {navigateToPeople(it)}
 
@@ -39,45 +55,77 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun observeViewModel() {
         super.observeViewModel()
-        viewModel.popularArtist.observe(viewLifecycleOwner){ result ->
-            when(result){
-                is Resource.Success -> {
-                    showPopularLoading(false)
-                    val actorList = result.data?.filter { it.gender == Gender.MALE.ordinal }
-                    actorList?.let { popularActorAdapter.setData(it) }
+        viewModel.apply {
+            popularArtist.observe(requireActivity()){ result ->
+                when(result){
+                    is Resource.Success -> {
+                        val actorList = result.data?.filter { it.gender == Gender.MALE.ordinal }
+                        actorList?.let { popularActorAdapter.setData(it) }
 
-                    val actressList = result.data?.filter { it.gender == Gender.FEMALE.ordinal }
-                    actressList?.let { popularActressAdapter.setData(it) }
-                }
-                is Resource.Loading -> {
-                    showPopularLoading(true)
-                }
-                is Resource.Error -> {
-                    showPopularLoading(false)
+                        val actressList = result.data?.filter { it.gender == Gender.FEMALE.ordinal }
+                        actressList?.let { popularActressAdapter.setData(it) }
+                        hideShimmer()
+                    }
+                    is Resource.Loading -> {
+                    }
+                    is Resource.Error -> {
+                        Log.e("HomeFragment", result.message.toString())
+                    }
                 }
             }
-        }
-        viewModel.trendingArtist.observe(viewLifecycleOwner){ result ->
-            when(result){
-                is Resource.Success -> {
-                    showTrendingLoading(false)
-                    result.data?.let { trendingArtistAdapter.setData(it) }
+
+            trendingArtist.observe(requireActivity()){ result ->
+                when(result){
+                    is Resource.Success -> {
+                        result.data?.let { trendingArtistAdapter.setData(it) }
+                        hideShimmer()
+                    }
+                    is Resource.Loading -> {
+                    }
+                    is Resource.Error -> {
+                        Log.e("HomeFragment", result.message.toString())
+                    }
                 }
-                is Resource.Loading -> {
-                    showTrendingLoading(true)
-                }
-                is Resource.Error -> {
-                    showTrendingLoading(false)
+            }
+
+            trendingMovie.observe(requireActivity()){result ->
+                when(result){
+                    is Resource.Success -> {
+                        if(result.data != null){
+                            trendingMovieLoaded = true
+                            binding.cardRecommendedMovie.apply {
+                                tvMovieTitle.text = result.data[0].title
+                                tvGenreValue.text = MovieGenres.getMovieGenreById(result.data[0].genreIds[0])
+                                val popularity = String.format("%.2f", result.data[0].popularity)
+                                tvPopularity.text = getString(R.string.popularity_format, popularity)
+                                tvRating.text =  String.format("%.2f", result.data[0].voteAverage)
+                                Glide.with(requireContext())
+                                    .load(result.data[0].backdropPath.asRemoteImagePath(ImageSize.ORIGINAL))
+                                    .placeholder(shimmerDrawable)
+                                    .into(ivBackdrop)
+                            }
+                            hideShimmer()
+                        }
+                    }
+                    is Resource.Error -> {
+                        Log.e("HomeFragment", result.message.toString())
+                    }
+                    is Resource.Loading -> {}
                 }
             }
         }
     }
 
-    fun showPopularLoading(value: Boolean) {
+    private fun hideShimmer() {
+        if (!checkBindingAvalability() || popularActorAdapter.itemCount <= 0 || trendingArtistAdapter.itemCount <= 0 || !trendingMovieLoaded) {
+            return
+        }
 
-    }
-    fun showTrendingLoading(value: Boolean){
-
+        binding.shimmerPlaceholder.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.layoutHome.visibility = View.VISIBLE
     }
 
 }

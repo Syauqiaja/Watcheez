@@ -6,8 +6,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
 import com.syauqi.watcheez.core.data.source.local.entity.people_w_movies.PeopleWithMoviesEntity
+import com.syauqi.watcheez.domain.people.model.People
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -15,7 +17,7 @@ interface PeopleDao {
     @Query("SELECT * FROM peoples ORDER BY popularity DESC")
     fun getAllPeoples(): Flow<List<PeopleEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(peopleData: List<PeopleEntity>)
 
     @Query("DELETE FROM peoples")
@@ -31,4 +33,11 @@ interface PeopleDao {
     @Transaction
     @Query("SELECT * FROM peoples WHERE name LIKE :query ORDER BY popularity")
     fun searchPeopleWithMovies(query: String): Flow<List<PeopleWithMoviesEntity>>
+
+    @Update(PeopleEntity::class)
+    suspend fun setPeopleFavorite(people: PeopleEntity)
+
+    @Query("SELECT * FROM peoples WHERE isFavorite = 1")
+    fun getFavoritePeople(): Flow<List<PeopleEntity>>
+
 }

@@ -43,6 +43,45 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:itemCount="5"
-        tools:listitem="@layout/item_actor_search_result" />
+        tools:listitem="@layout/item_actor_search_result"
+        tools:visibility="invisible"/>
+
+    <FrameLayout
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone">
+        <include
+            layout="@layout/item_loading_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:src="@drawable/img_empty_cart"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_didn_t_find_anything"
+            style="@style/TextAppearance.AppCompat.Headline5"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/text_body_light"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

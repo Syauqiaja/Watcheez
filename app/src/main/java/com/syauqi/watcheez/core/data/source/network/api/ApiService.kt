@@ -1,5 +1,7 @@
 package com.syauqi.watcheez.core.data.source.network.api
 
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.BaseResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
@@ -35,4 +37,16 @@ interface ApiService {
         @Query("page") page: Int = 1,
         @Query("api_key") apiKey : String = Constants.API_KEY,
     ): BaseResponse<PeopleResponse>
+
+    @GET("trending/movie/{time_window}")
+    suspend fun getTrendingMovies(
+        @Path("time_window") timeWindow: String = "day",
+        @Query("api_key") apiKey : String = Constants.API_KEY
+    ): BaseResponse<MovieResponse>
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieById(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey : String = Constants.API_KEY
+    ): MovieDetailResponse
 }

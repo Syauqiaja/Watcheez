@@ -1,5 +1,6 @@
 package com.syauqi.watcheez.core.data.repositories
 
+import android.util.Log
 import com.syauqi.watcheez.core.data.NetworkBoundResource
 import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.core.data.source.local.LocalDataSource
@@ -12,13 +13,20 @@ import com.syauqi.watcheez.domain.people.model.PersonDetail
 import com.syauqi.watcheez.domain.people.repository.IPeopleRepository
 import com.syauqi.watcheez.utils.AppExecutors
 import com.syauqi.watcheez.utils.DataMapper.toPeopleArrayList
+import com.syauqi.watcheez.utils.DataMapper.toPeopleEntity
 import com.syauqi.watcheez.utils.DataMapper.toPeopleEntityArrayList
 import com.syauqi.watcheez.utils.DataMapper.toPersonDetail
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -33,11 +41,12 @@ class PeopleRepository @Inject constructor(
             emit(Resource.Loading())
 
             val response = remoteDataSource.getTrendingPeople()
-            response.map {result ->
+            response.collect{result ->
                 when(result){
                     is ApiResponse.Success -> {
-                        val data = result.data.results.toPeopleArrayList()
-                        emit(Resource.Success(data))
+                        val data = result.data.results.toPeopleEntityArrayList()
+                        localDataSource.insertAlPeople(data)
+                        emit(Resource.Success(data.toPeopleArrayList()))
                     }
                     is ApiResponse.Empty -> {
                         emit(Resource.Success(ArrayList()))
@@ -64,7 +73,7 @@ class PeopleRepository @Inject constructor(
                 val listPeopleEntity = response.results.toPeopleEntityArrayList()
                 localDataSource.insertAlPeople(listPeopleEntity)
             }
-            override fun shouldFetch(data: List<People>?): Boolean = true
+            override fun shouldFetch(data: List<People>?): Boolean = data.isNullOrEmpty()
 
         }.asFlow()
     override fun getPeopleById(id: Int): Flow<Resource<PersonDetail?>>{
@@ -72,7 +81,7 @@ class PeopleRepository @Inject constructor(
             emit(Resource.Loading())
 
             val response = remoteDataSource.getPeopleById(id)
-            response.map {result ->
+            response.collect {result ->
                 when(result){
                     is ApiResponse.Success -> {
                         val data = result.data.toPersonDetail()
@@ -92,7 +101,7 @@ class PeopleRepository @Inject constructor(
     override fun searchPeopleByQuery(query: String): Flow<Resource<List<People>>> =
         object : NetworkBoundResource<List<People>, BaseResponse<PeopleResponse>>(){
             override fun loadFromDB(): Flow<List<People>> {
-                return localDataSource.searchPeopleByQuery(query).map {
+                return localDataSource.searchPeopleByQuery("$query%").map {
                     it.toPeopleArrayList()
                 }
             }
@@ -105,4 +114,27 @@ class PeopleRepository @Inject constructor(
             }
             override fun shouldFetch(data: List<People>?): Boolean = true
         }.asFlow()
+
+    override fun setPeopleFavorite(people: People) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localDataSource.setPeopleFavorite(people.toPeopleEntity())
+        }
+    }
+
+    override fun getFavoritePeople(): Flow<Resource<List<People>>> {
+        return flow<Resource<List<People>>> {
+            emit(Resource.Loading())
+            try {
+                localDataSource.getFavoritePeople().collect(){
+                    if(it.isNotEmpty()) {
+                        emit(Resource.Success(it.toPeopleArrayList()))
+                    }else{
+                        emit(Resource.Error("Data not found"))
+                    }
+                }
+            }catch (e:Exception){
+                emit(Resource.Error("Data not found"))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

@@ -3,12 +3,15 @@ package com.syauqi.watcheez.utils
 import com.syauqi.watcheez.core.data.source.local.entity.MovieEntity
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
 import com.syauqi.watcheez.core.data.source.local.entity.people_w_movies.PeopleWithMoviesEntity
-import com.syauqi.watcheez.core.data.source.network.response.people.KnownForItem
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
 import com.syauqi.watcheez.domain.movie.model.Movie
+import com.syauqi.watcheez.domain.movie.model.MovieDetail
 import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.domain.people.model.PersonDetail
+import com.syauqi.watcheez.utils.DataMapper.toPeople
 import java.lang.StringBuilder
 
 object DataMapper {
@@ -21,7 +24,8 @@ object DataMapper {
                     name = peopleEntity.name,
                     photoUrl = peopleEntity.photoUrl,
                     popularity = peopleEntity.popularity,
-                    gender = peopleEntity.gender
+                    gender = peopleEntity.gender,
+                    isFavorite = peopleEntity.isFavorite
                 )
             )
         }
@@ -54,6 +58,7 @@ object DataMapper {
             photoUrl = peopleEntity.photoUrl,
             popularity = peopleEntity.popularity,
             gender = peopleEntity.gender,
+            isFavorite = peopleEntity.isFavorite,
             knownForItem = movies.map { it.toMovie() }
         )
     }
@@ -88,19 +93,20 @@ object DataMapper {
         this.map { peopleResponse ->
             if(peopleResponse.profilePath != null && peopleResponse.popularity != null)
                 result.add(
-                    peopleResponse.toPeople()
+                    peopleResponse.toPeopleEntity().toPeople()
                 )
         }
         return result
     }
 
-    fun PeopleResponse.toPeople(): People {
-        return People(
+    fun PeopleResponse.toPeopleEntity(): PeopleEntity {
+        return PeopleEntity(
             id = this.id,
             name = this.name,
             photoUrl = this.profilePath!!,
             popularity = this.popularity!!,
-            gender = this.gender
+            gender = this.gender,
+            isFavorite = false
         )
     }
 
@@ -110,11 +116,34 @@ object DataMapper {
             name = this.name,
             photoUrl = this.photoUrl,
             popularity = this.popularity,
-            gender = this.gender
+            gender = this.gender,
+            isFavorite = isFavorite
         )
     }
 
-    private fun KnownForItem.toMovieEntity(): MovieEntity{
+    fun People.toPeopleEntity(): PeopleEntity{
+        return PeopleEntity(
+            id = this.id,
+            name = this.name,
+            photoUrl = this.photoUrl,
+            popularity = this.popularity,
+            gender = this.gender,
+            isFavorite = isFavorite
+        )
+    }
+
+    fun People.switchFavorite(): People{
+        return People(
+            id = this.id,
+            name = this.name,
+            photoUrl = this.photoUrl,
+            popularity = this.popularity,
+            gender = this.gender,
+            isFavorite = !this.isFavorite
+        )
+    }
+
+    private fun MovieResponse.toMovieEntity(): MovieEntity{
         return MovieEntity(
             id = id,
             title = title,
@@ -123,7 +152,8 @@ object DataMapper {
             posterPath = posterPath!!,
             genreIds = genreIds,
             overview = overview,
-            video = video
+            video = video,
+            voteAverage = voteAverage
         )
     }
 
@@ -136,7 +166,8 @@ object DataMapper {
             genreIds = genreIds,
             posterPath = posterPath,
             overview = overview,
-            video = video
+            video = video,
+            voteAverage = voteAverage
         )
     }
 
@@ -165,5 +196,16 @@ object DataMapper {
             builder.append(it.title)
         }
         return builder.toString()
+    }
+    fun List<MovieResponse>.toListMovie(): List<Movie>{
+        return filter { (it.popularity != null) && (it.backdropPath != null) && (it.posterPath != null) }
+            .map { it.toMovieEntity().toMovie() }
+    }
+
+    fun MovieDetailResponse.toMovieDetail(): MovieDetail{
+        return MovieDetail(
+            id = id,
+            title = title
+        )
     }
 }

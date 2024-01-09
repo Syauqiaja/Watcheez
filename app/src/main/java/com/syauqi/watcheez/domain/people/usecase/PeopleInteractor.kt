@@ -22,4 +22,7 @@ class PeopleInteractor @Inject constructor(private val repository: IPeopleReposi
     override fun searchPeopleByQuery(query: String): Flow<Resource<List<People>>> =
         repository.searchPeopleByQuery(query)
 
+    override fun setPeopleFavorite(people: People) = repository.setPeopleFavorite(people)
+    override fun getFavoritePeople(): Flow<Resource<List<People>>> = repository.getFavoritePeople()
+
 }

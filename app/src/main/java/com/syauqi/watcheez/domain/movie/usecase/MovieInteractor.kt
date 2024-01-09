@@ -7,12 +7,12 @@ import com.syauqi.watcheez.domain.movie.repository.IMovieRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class MovieInterctor @Inject constructor(repository: IMovieRepository): MovieUseCase {
+class MovieInteractor @Inject constructor(private val repository: IMovieRepository): MovieUseCase {
     override fun getTrendingMovies(limit: Int): Flow<Resource<List<Movie>>> {
-        TODO("Not yet implemented")
+        return repository.getTrendingMovies(limit)
     }
 
     override fun getMovieById(id: Int): Flow<Resource<MovieDetail>> {
-        TODO("Not yet implemented")
+        return repository.getMovieById(id)
     }
 }

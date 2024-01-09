@@ -1,8 +1,8 @@
-package com.syauqi.watcheez.core.data.source.network.response.people
+package com.syauqi.watcheez.core.data.source.network.response.movie
 
 import com.google.gson.annotations.SerializedName
 
-data class KnownForItem(
+data class MovieResponse(
 
     @field:SerializedName("overview")
     val overview: String,
@@ -22,11 +22,11 @@ data class KnownForItem(
     @field:SerializedName("backdrop_path")
     val backdropPath: String? = null,
 
-    @field:SerializedName("media_type")
-    val mediaType: String? = null,
-
     @field:SerializedName("release_date")
     val releaseDate: String? = null,
+
+    @field:SerializedName("vote_average")
+    val voteAverage: Double,
 
     @field:SerializedName("popularity")
     val popularity: Double?,

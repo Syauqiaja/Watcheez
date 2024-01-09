@@ -11,5 +11,6 @@ data class People(
     val popularity: Double,
     val photoUrl: String,
     val gender: Int,
-    val knownForItem: List<Movie>? = null
+    val knownForItem: List<Movie>? = null,
+    val isFavorite: Boolean
 ):Parcelable

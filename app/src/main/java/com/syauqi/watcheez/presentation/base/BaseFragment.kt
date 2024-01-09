@@ -18,6 +18,10 @@ open class BaseFragment<VB: ViewBinding>(
     // Only valid between onCreateView and onDestroyView
     val binding: VB get() = _binding!!
 
+    fun checkBindingAvalability(): Boolean{
+        return _binding != null
+    }
+
     private val shimmerBuilder = Shimmer.AlphaHighlightBuilder()
         .setDuration(1000) // how long the shimmering animation takes to do one full sweep
         .setBaseAlpha(0.7f) //the alpha of the underlying children

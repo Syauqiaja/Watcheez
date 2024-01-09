@@ -27,15 +27,6 @@
                 android:text="@string/suggested_for_you"
                 android:textColor="@color/text_body"
                 android:layout_centerVertical="true"/>
-            <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_search_outline"
-                android:scaleType="fitXY"
-                android:padding="10dp"
-                android:background="@color/transparent"
-                app:tint="@color/black"
-                android:layout_alignParentEnd="true"/>
         </RelativeLayout>
     </Toolbar>
     <androidx.constraintlayout.widget.ConstraintLayout

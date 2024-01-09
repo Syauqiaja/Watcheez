@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -66,8 +67,8 @@ dependencies {
 //    Dependency Injection
     implementation("com.google.dagger:hilt-android:$hilt_version")
     annotationProcessor("com.google.dagger:hilt-compiler:$hilt_version")
-    kapt("com.google.dagger:hilt-compiler:$hilt_version")
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    ksp("com.google.dagger:hilt-compiler:$hilt_version")
+    ksp("androidx.hilt:hilt-compiler:1.1.0")
 
 //    Network Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -93,10 +94,8 @@ dependencies {
 
 //    Room
     implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.room:room-paging:$room_version")
-}
-kapt {
-    correctErrorTypes = true
+
 }

@@ -3,6 +3,8 @@ package com.syauqi.watcheez.core.data.source.network
 import android.util.Log
 import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
+import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.BaseResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
 import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
@@ -34,7 +36,7 @@ class RemoteDataSource @Inject constructor(
                     emit(ApiResponse.Empty)
                 }
             }catch (e: Exception){
-                Log.e("RemoteDataSource", e.message.toString())
+                e.printStackTrace()
                 emit(ApiResponse.Error(e.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
@@ -75,11 +77,41 @@ class RemoteDataSource @Inject constructor(
                 val response = apiHelper.searchPeopleByQuery(query)
                 emit(ApiResponse.Success(response))
             }catch (e: HttpException){
-                Log.e("RemoteDataSource", e.message.toString())
+                e.printStackTrace()
                 emit(ApiResponse.Error(e.message.toString()))
             }catch (e: Exception){
-                Log.e("RemoteDataSource", e.message.toString())
+                e.printStackTrace()
+                emit(ApiResponse.Error(e.message.toString()))
             }
-        }
+        }.flowOn(Dispatchers.IO)
+    }
+    fun getTrendingMovies(): Flow<ApiResponse<BaseResponse<MovieResponse>>>{
+        return flow {
+            try {
+                Log.w("RemoteDataSource", "getTrendingRunning")
+                val response = apiHelper.getTrendingMovies()
+                emit(ApiResponse.Success(response))
+            }catch (e: HttpException){
+                e.printStackTrace()
+                emit(ApiResponse.Error(e.message.toString()))
+            }catch (e: Exception){
+                e.printStackTrace()
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+    fun getMovieById(id: Int): Flow<ApiResponse<MovieDetailResponse>>{
+        return flow {
+            try {
+                val response = apiHelper.getMovieById(id)
+                emit(ApiResponse.Success(response))
+            }catch (e: HttpException){
+                e.printStackTrace()
+                emit(ApiResponse.Error(e.message.toString()))
+            }catch (e: Exception){
+                e.printStackTrace()
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 }

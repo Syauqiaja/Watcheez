@@ -15,5 +15,6 @@ data class MovieEntity(
     val genreIds: List<Int>,
     val posterPath: String,
     val overview: String,
-    val video: Boolean
+    val video: Boolean,
+    val voteAverage: Double
 )

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val navView : BottomNavigationView = binding.bottomNav
         navController = findNavController(R.id.main_container_view)
         val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.home_fragment, R.id.search_fragment, R.id.favorite_fragment, R.id.settings_fragment
+            R.id.home_fragment, R.id.search_fragment, R.id.favorite_fragment
         ).build()
 
         navController.addOnDestinationChangedListener{_, destination, _ ->
@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             R.id.home_fragment,
             R.id.search_fragment,
             R.id.favorite_fragment,
-            R.id.settings_fragment
         )
     }
 }
