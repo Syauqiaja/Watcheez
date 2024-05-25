@@ -6,11 +6,19 @@ plugins {
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.syauqi.watcheez"
     compileSdk = 34
+
+    signingConfigs.getByName("debug"){
+        storeFile(file("/debug.jks"))
+        storePassword("123123123")
+        keyAlias("androiddebugkey")
+        keyPassword("123123123")
+    }
 
     defaultConfig {
         applicationId = "com.syauqi.watcheez"
@@ -66,9 +74,8 @@ dependencies {
 
 //    Dependency Injection
     implementation("com.google.dagger:hilt-android:$hiltVersion")
-    annotationProcessor("com.google.dagger:hilt-compiler:$hiltVersion")
-    ksp("com.google.dagger:hilt-compiler:$hiltVersion")
-    ksp("androidx.hilt:hilt-compiler:1.1.0")
+    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
 
 //    Network Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -97,5 +104,11 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-paging:$roomVersion")
+
+//    Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.android.gms:play-services-auth:21.1.1")
+    implementation ("com.google.android.gms:play-services-auth-api-phone:18.0.2")
 
 }

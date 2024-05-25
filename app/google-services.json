@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1090797703470",
+    "project_id": "watcheez-591cc",
+    "storage_bucket": "watcheez-591cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090797703470:android:ec9bec97e403c25e562abf",
+        "android_client_info": {
+          "package_name": "com.syauqi.watcheez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090797703470-ccaucjgg8mc6175angd3q13hlptbdprf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.syauqi.watcheez",
+            "certificate_hash": "0a81938f47b0f28057dc6ccdf917b06d6144008c"
+          }
+        },
+        {
+          "client_id": "1090797703470-ta7ol01lckttu9cv8i6sbu05e3i2c600.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU-tSlourB9yDRsGB25MvO_j-UZtcBsP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090797703470-ta7ol01lckttu9cv8i6sbu05e3i2c600.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
