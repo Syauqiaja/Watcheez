@@ -1,6 +1,5 @@
 package com.syauqi.watcheez.presentation.features.home
 
-import android.opengl.Visibility
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -8,11 +7,10 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
-import com.syauqi.watcheez.domain.people.adapter.PopularArtistAdapter
+import com.syauqi.watcheez.presentation.features.home.adapter.PopularArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.databinding.FragmentHomeBinding
-import com.syauqi.watcheez.domain.BaseAdapter
-import com.syauqi.watcheez.domain.people.adapter.TrendingArtistAdapter
+import com.syauqi.watcheez.presentation.features.home.adapter.TrendingArtistAdapter
 import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.utils.MovieGenres
 import com.syauqi.watcheez.utils.asRemoteImagePath

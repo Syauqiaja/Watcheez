@@ -1,10 +1,7 @@
-package com.syauqi.watcheez.domain.people.adapter
+package com.syauqi.watcheez.presentation.features.artist_search.adapter
 
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.syauqi.watcheez.databinding.ItemActorSearchResultBinding
 import com.syauqi.watcheez.domain.BaseAdapter

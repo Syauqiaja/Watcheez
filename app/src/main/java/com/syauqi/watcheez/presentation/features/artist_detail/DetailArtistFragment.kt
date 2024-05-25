@@ -1,8 +1,5 @@
 package com.syauqi.watcheez.presentation.features.artist_detail
 
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -13,8 +10,8 @@ import com.bumptech.glide.Glide
 import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.databinding.FragmentDetailArtistBinding
-import com.syauqi.watcheez.domain.people.adapter.ArtistPhotoAdapter
-import com.syauqi.watcheez.domain.people.adapter.FilmoghraphyAdapter
+import com.syauqi.watcheez.presentation.features.artist_detail.adapter.ArtistPhotoAdapter
+import com.syauqi.watcheez.presentation.features.artist_detail.adapter.FilmoghraphyAdapter
 import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.utils.DataMapper.switchFavorite

@@ -1,6 +1,5 @@
 package com.syauqi.watcheez.presentation.features.artist_search
 
-import android.opengl.Visibility
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -8,9 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.syauqi.watcheez.core.data.Resource
-import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
 import com.syauqi.watcheez.databinding.FragmentSearchBinding
-import com.syauqi.watcheez.domain.people.adapter.SearchArtistAdapter
+import com.syauqi.watcheez.presentation.features.artist_search.adapter.SearchArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
