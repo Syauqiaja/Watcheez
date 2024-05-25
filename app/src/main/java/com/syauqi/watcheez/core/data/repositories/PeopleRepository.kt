@@ -58,6 +58,7 @@ class PeopleRepository @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
+
     override fun getPopularPeople() : Flow<Resource<List<People>>> =
         object : NetworkBoundResource<List<People>, BaseResponse<PeopleResponse>>(){
             override fun loadFromDB(): Flow<List<People>> {
@@ -74,8 +75,8 @@ class PeopleRepository @Inject constructor(
                 localDataSource.insertAlPeople(listPeopleEntity)
             }
             override fun shouldFetch(data: List<People>?): Boolean = data.isNullOrEmpty()
-
         }.asFlow()
+
     override fun getPeopleById(id: Int): Flow<Resource<PersonDetail?>>{
         return flow<Resource<PersonDetail?>> {
             emit(Resource.Loading())
