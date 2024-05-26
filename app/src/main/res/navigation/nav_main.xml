@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/search_fragment"/>
+        <action
+            android:id="@+id/action_home_fragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 
     <fragment
@@ -52,6 +55,21 @@
         <argument
             android:name="people"
             app:argType="com.syauqi.watcheez.domain.people.model.People" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.syauqi.watcheez.presentation.features.movie_detail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" >
+        <action
+            android:id="@+id/action_movieDetailFragment_to_detail_artist_fragment"
+            app:destination="@id/detail_artist_fragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_movieDetailFragment_self"
+            app:destination="@id/movieDetailFragment" />
     </fragment>
 
 </navigation>

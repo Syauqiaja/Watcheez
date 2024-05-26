@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary_base</item>
         <item name="colorPrimaryVariant">@color/primary_dark_green</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/primary_base</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondary_base</item>
         <item name="colorSecondaryVariant">@color/secondary_300</item>

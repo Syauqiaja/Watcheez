@@ -6,13 +6,17 @@ import com.syauqi.watcheez.core.data.source.local.entity.people_w_movies.PeopleW
 import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
 import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.PersonDetailResponse
 import com.syauqi.watcheez.domain.movie.model.Movie
 import com.syauqi.watcheez.domain.movie.model.MovieDetail
 import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.domain.people.model.PersonDetail
 import com.syauqi.watcheez.utils.DataMapper.toPeople
 import java.lang.StringBuilder
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object DataMapper {
     fun List<PeopleEntity>.toPeopleArrayList():ArrayList<People>{
@@ -103,7 +107,7 @@ object DataMapper {
         return PeopleEntity(
             id = this.id,
             name = this.name,
-            photoUrl = this.profilePath!!,
+            photoUrl = this.profilePath ?: "",
             popularity = this.popularity!!,
             gender = this.gender,
             isFavorite = false
@@ -202,10 +206,35 @@ object DataMapper {
             .map { it.toMovieEntity().toMovie() }
     }
 
-    fun MovieDetailResponse.toMovieDetail(): MovieDetail{
+    fun MovieDetailResponse.toMovieDetail(): MovieDetail {
+        val posterUrl = posterPath?.let { "https://image.tmdb.org/t/p/w500$it" } ?: ""
+        val backdropUrl = backdropPath?.let { "https://image.tmdb.org/t/p/w300$it" } ?: ""
+        val overviewText = overview ?: ""
+        val taglineText = tagline ?: ""
+        val genresList = genres?.mapNotNull { it?.name } ?: emptyList()
+        val productionCompaniesList = productionCompanies?.mapNotNull { it?.name } ?: emptyList()
+        val releaseDateFormatted = releaseDate?.let {
+            try {
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(it)
+            } catch (e: ParseException) {
+                null
+            }
+        } ?: Date(0)
+        val runtime = runtime ?: 0
+
         return MovieDetail(
             id = id,
-            title = title
+            title = title,
+            posterUrl = posterUrl,
+            backdropUrl = backdropUrl,
+            overview = overviewText,
+            popularity = popularity ?: 0f,
+            tagline = taglineText,
+            releaseDate = releaseDateFormatted,
+            genres = genresList,
+            duration = runtime,
+            productionCompanies = productionCompaniesList,
+            revenue = revenue?.toLong() ?: 0L
         )
     }
 }

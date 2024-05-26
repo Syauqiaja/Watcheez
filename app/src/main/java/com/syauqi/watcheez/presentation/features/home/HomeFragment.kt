@@ -101,15 +101,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                         if(result.data != null){
                             trendingMovieLoaded = true
                             binding.cardRecommendedMovie.apply {
-                                tvMovieTitle.text = result.data[0].title
-                                tvGenreValue.text = MovieGenres.getMovieGenreById(result.data[0].genreIds[0])
-                                val popularity = String.format("%.2f", result.data[0].popularity)
+                                val movie = result.data[0]
+                                tvMovieTitle.text = movie.title
+                                tvGenreValue.text = MovieGenres.getMovieGenreById(movie.genreIds[0])
+                                val popularity = String.format("%.2f", movie.popularity)
                                 tvPopularity.text = getString(R.string.popularity_format, popularity)
-                                tvRating.text =  String.format("%.2f", result.data[0].voteAverage)
+                                tvRating.text =  String.format("%.2f", movie.voteAverage)
                                 Glide.with(requireContext())
-                                    .load(result.data[0].backdropPath.asRemoteImagePath(ImageSize.ORIGINAL))
+                                    .load(movie.backdropPath.asRemoteImagePath(ImageSize.ORIGINAL))
                                     .placeholder(shimmerDrawable)
                                     .into(ivBackdrop)
+                                binding.cardRecommendedMovie.root.setOnClickListener {
+                                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movie.id))
+                                }
                             }
                             hideShimmer()
                         }

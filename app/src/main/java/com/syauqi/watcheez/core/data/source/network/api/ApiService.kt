@@ -1,10 +1,12 @@
 package com.syauqi.watcheez.core.data.source.network.api
 
+import com.syauqi.watcheez.core.data.source.network.response.movie.CreditResponse
 import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
 import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
-import com.syauqi.watcheez.core.data.source.network.response.people.BaseResponse
+import com.syauqi.watcheez.core.data.source.network.response.BaseResponse
+import com.syauqi.watcheez.core.data.source.network.response.movie.WatchProviderResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.PersonDetailResponse
 import com.syauqi.watcheez.utils.Constants
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -49,4 +51,22 @@ interface ApiService {
         @Path("movie_id") id: Int,
         @Query("api_key") apiKey : String = Constants.API_KEY
     ): MovieDetailResponse
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getCreditsByMovieId(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey : String = Constants.API_KEY
+    ): CreditResponse
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getRelatedMovie(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey : String = Constants.API_KEY
+    ): BaseResponse<MovieResponse>
+
+    @GET("movie/{movie_id}/watch/providers")
+    suspend fun getMovieProviders(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey : String = Constants.API_KEY
+    ): WatchProviderResponse
 }

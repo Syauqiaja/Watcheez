@@ -5,14 +5,12 @@ import com.syauqi.watcheez.core.data.source.local.dao.PeopleDao
 import com.syauqi.watcheez.core.data.source.local.dao.RemoteKeysDao
 import com.syauqi.watcheez.core.data.source.local.entity.PeopleEntity
 import com.syauqi.watcheez.core.data.source.local.entity.people_w_movies.PeopleWithMoviesEntity
-import com.syauqi.watcheez.domain.people.model.People
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalDataSource @Inject constructor(
-    private val moviesDao: MoviesDao,
+class LocalDSPeople @Inject constructor(
     private val remoteKeysDao: RemoteKeysDao,
     private val peopleDao: PeopleDao
 ){

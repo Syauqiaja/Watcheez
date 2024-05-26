@@ -26,7 +26,7 @@ data class MovieDetailResponse(
 	val genres: List<GenresItem?>? = null,
 
 	@field:SerializedName("popularity")
-	val popularity: Any? = null,
+	val popularity: Float? = null,
 
 	@field:SerializedName("id")
 	val id: Int,
@@ -58,6 +58,9 @@ data class MovieDetailResponse(
 	@field:SerializedName("tagline")
 	val tagline: String? = null,
 
+	@field:SerializedName("runtime")
+	val runtime: Int? = null,
+
 	@field:SerializedName("adult")
 	val adult: Boolean? = null,
 )
@@ -65,7 +68,9 @@ data class MovieDetailResponse(
 data class GenresItem(
 
 	@field:SerializedName("id")
-	val id: Int
+	val id: Int,
+	@field:SerializedName("name")
+	val name: String
 )
 
 data class ProductionCompaniesItem(

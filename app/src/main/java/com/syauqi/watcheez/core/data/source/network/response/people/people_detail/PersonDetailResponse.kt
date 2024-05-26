@@ -1,4 +1,4 @@
-package com.syauqi.watcheez.core.data.source.network.response.people_detail
+package com.syauqi.watcheez.core.data.source.network.response.people.people_detail
 
 import com.google.gson.annotations.SerializedName
 

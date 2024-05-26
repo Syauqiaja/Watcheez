@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_50sdp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/ripple_borderless"
+    android:layout_marginHorizontal="@dimen/_4sdp">
+    <ImageView
+        android:id="@+id/iv_provider"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        tools:src="@drawable/common_google_signin_btn_icon_dark"/>
+    <TextView
+        android:id="@+id/tv_provider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body.Medium.SemiBold"
+        tools:text="@tools:sample/lorem[2]"
+        android:textColor="@color/text_body"/>
+</LinearLayout>

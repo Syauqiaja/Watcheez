@@ -1,8 +1,8 @@
 package com.syauqi.watcheez.domain.people.model
 
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.CastItem
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.ExternalIds
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.ImageItem
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.CastItem
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.ExternalIds
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.ImageItem
 
 data class PersonDetail (
     val birthday: String? = null,

@@ -3,7 +3,7 @@ package com.syauqi.watcheez.presentation.features.artist_detail.adapter
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.CastItem
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.CastItem
 import com.syauqi.watcheez.databinding.ItemFilmographyBinding
 import com.syauqi.watcheez.domain.BaseAdapter
 import com.syauqi.watcheez.utils.MovieGenres

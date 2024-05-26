@@ -1,9 +1,11 @@
 package com.syauqi.watcheez.core.di
 
 import com.google.gson.GsonBuilder
-import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
-import com.syauqi.watcheez.core.data.source.network.api.ApiHelperImpl
+import com.syauqi.watcheez.core.data.source.network.api.movie.ApiHelperMovie
+import com.syauqi.watcheez.core.data.source.network.api.movie.ApiHelperMovieImpl
 import com.syauqi.watcheez.core.data.source.network.api.ApiService
+import com.syauqi.watcheez.core.data.source.network.api.people.ApiHelperPeople
+import com.syauqi.watcheez.core.data.source.network.api.people.ApiHelperPeopleImpl
 import com.syauqi.watcheez.utils.AppExecutors
 import com.syauqi.watcheez.utils.Constants
 import dagger.Module
@@ -62,7 +64,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+    fun provideMovieApiHelper(apiHelper: ApiHelperMovieImpl): ApiHelperMovie = apiHelper
+    @Singleton
+    @Provides
+    fun providePeopleApiHelper(apiHelper: ApiHelperPeopleImpl): ApiHelperPeople = apiHelper
 
     @Singleton
     @Provides

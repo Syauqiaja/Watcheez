@@ -62,4 +62,7 @@
     <color name="text_body_light">@color/gray_500</color>
     <color name="text_secondary">@color/gray_300</color>
     <color name="shimmer">#DDDDDD</color>
+
+    <!--  Others  -->
+    <color name="ripple_effect">#77A5DED3</color>
 </resources>

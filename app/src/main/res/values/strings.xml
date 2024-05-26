@@ -49,4 +49,8 @@
     <string name="loading_content">Loading content...</string>
     <string name="popularity_format">%s Popularity</string>
     <string name="we_didn_t_find_anything">We didn\'t find anything</string>
+    <string name="director_s">Director: %s</string>
+    <string name="detail_head_movie">%s | %s | %s</string>
+    <string name="production_company_s">Production companies: %s</string>
+    <string name="source_just_watch">Source by www.justwatch.com</string>
 </resources>

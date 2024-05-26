@@ -1,17 +1,11 @@
-package com.syauqi.watcheez.core.data.source.network
+package com.syauqi.watcheez.core.data.source.network.datasource
 
 import android.util.Log
-import com.syauqi.watcheez.core.data.source.network.api.ApiHelper
+import com.syauqi.watcheez.core.data.source.network.api.people.ApiHelperPeople
 import com.syauqi.watcheez.core.data.source.network.response.ApiResponse
-import com.syauqi.watcheez.core.data.source.network.response.movie.MovieDetailResponse
-import com.syauqi.watcheez.core.data.source.network.response.movie.MovieResponse
-import com.syauqi.watcheez.core.data.source.network.response.people.BaseResponse
+import com.syauqi.watcheez.core.data.source.network.response.BaseResponse
 import com.syauqi.watcheez.core.data.source.network.response.people.PeopleResponse
-import com.syauqi.watcheez.core.data.source.network.response.people_detail.PersonDetailResponse
-import com.syauqi.watcheez.domain.people.model.People
-import com.syauqi.watcheez.domain.people.model.PersonDetail
-import com.syauqi.watcheez.utils.DataMapper.toPeopleArrayList
-import com.syauqi.watcheez.utils.DataMapper.toPersonDetail
+import com.syauqi.watcheez.core.data.source.network.response.people.people_detail.PersonDetailResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,13 +16,13 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RemoteDataSource @Inject constructor(
-    private val apiHelper: ApiHelper
+class RemoteDSPeople @Inject constructor(
+    private val apiHelperPeople: ApiHelperPeople
 ) {
     fun getTrendingPeople(): Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
         return flow{
             try {
-                val response = apiHelper.getTrendingPeople("day")
+                val response = apiHelperPeople.getTrendingPeople("day")
                 val dataArray = response.results
                 if(dataArray.isNotEmpty()){
                     emit(ApiResponse.Success(response))
@@ -45,7 +39,7 @@ class RemoteDataSource @Inject constructor(
     fun getPopularPeople() : Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
         return flow{
             try {
-                val response = apiHelper.getPopularPeople()
+                val response = apiHelperPeople.getPopularPeople()
                 val dataArray = response.results
                 if(dataArray.isNotEmpty()){
                     emit(ApiResponse.Success(response))
@@ -62,7 +56,7 @@ class RemoteDataSource @Inject constructor(
     fun getPeopleById(id: Int): Flow<ApiResponse<PersonDetailResponse>>{
         return flow {
             try {
-                val response = apiHelper.getPersonById(id)
+                val response = apiHelperPeople.getPersonById(id)
                 emit(ApiResponse.Success(response))
             }catch (e: Exception){
                 Log.e("RemoteDataSource", e.message.toString())
@@ -74,36 +68,7 @@ class RemoteDataSource @Inject constructor(
     fun searchPeopleByQuery(query: String): Flow<ApiResponse<BaseResponse<PeopleResponse>>> {
         return flow {
             try {
-                val response = apiHelper.searchPeopleByQuery(query)
-                emit(ApiResponse.Success(response))
-            }catch (e: HttpException){
-                e.printStackTrace()
-                emit(ApiResponse.Error(e.message.toString()))
-            }catch (e: Exception){
-                e.printStackTrace()
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }.flowOn(Dispatchers.IO)
-    }
-    fun getTrendingMovies(): Flow<ApiResponse<BaseResponse<MovieResponse>>>{
-        return flow {
-            try {
-                Log.w("RemoteDataSource", "getTrendingRunning")
-                val response = apiHelper.getTrendingMovies()
-                emit(ApiResponse.Success(response))
-            }catch (e: HttpException){
-                e.printStackTrace()
-                emit(ApiResponse.Error(e.message.toString()))
-            }catch (e: Exception){
-                e.printStackTrace()
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }.flowOn(Dispatchers.IO)
-    }
-    fun getMovieById(id: Int): Flow<ApiResponse<MovieDetailResponse>>{
-        return flow {
-            try {
-                val response = apiHelper.getMovieById(id)
+                val response = apiHelperPeople.searchPeopleByQuery(query)
                 emit(ApiResponse.Success(response))
             }catch (e: HttpException){
                 e.printStackTrace()
