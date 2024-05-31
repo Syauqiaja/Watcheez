@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
 import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.databinding.FragmentMovieDetailBinding
@@ -19,6 +21,7 @@ import com.syauqi.watcheez.domain.movie.model.Movie
 import com.syauqi.watcheez.domain.movie.model.MovieDetail
 import com.syauqi.watcheez.domain.people.model.People
 import com.syauqi.watcheez.presentation.base.BaseFragment
+import com.syauqi.watcheez.presentation.features.home.adapter.MovieCarouselAdapter
 import com.syauqi.watcheez.presentation.features.home.adapter.PopularArtistAdapter
 import com.syauqi.watcheez.presentation.features.movie_detail.adapter.MovieListAdapter
 import com.syauqi.watcheez.utils.MarginItemDecoration
@@ -172,15 +175,15 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>(
     }
     private fun setupRelatedMovies(listMovies: List<Movie>){
         binding.rvRelatedMovies.apply {
-            adapter = MovieListAdapter().also {
+            adapter = MovieCarouselAdapter().also {
                 it.setData(listMovies)
                 it.onItemClick = {movie ->
                     val action = MovieDetailFragmentDirections.actionMovieDetailFragmentSelf(movie.id)
                     findNavController().navigate(action)
                 }
             }
-            layoutManager = LinearLayoutManager(requireContext()).also {
-                it.orientation = LinearLayoutManager.VERTICAL
+            layoutManager = CarouselLayoutManager().also {
+                CarouselSnapHelper().attachToRecyclerView(this)
             }
             addItemDecoration(MarginItemDecoration(requireContext(), 8))
         }

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/card_recommended_movie1"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie2"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie2"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toEndOf="@id/end_gl"
+            motion:layout_constraintStart_toStartOf="@id/start_gl"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie3"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie2"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie4"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie3"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/card_recommended_movie1"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toEndOf="@id/end_gl"
+            motion:layout_constraintStart_toStartOf="@id/start_gl"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie2"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie1"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie3"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie2"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie4"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie3"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:pathMotionArc="startVertical"
+            motion:transitionEasing="linear" />
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/startRight1">
+        <Constraint
+            android:id="@+id/card_recommended_movie1"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie2"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie2"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie3"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie3"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toEndOf="@id/end_gl"
+            motion:layout_constraintStart_toStartOf="@id/start_gl"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie4"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintStart_toEndOf="@id/card_recommended_movie3"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:pathMotionArc="startVertical"
+            motion:transitionEasing="linear" />
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/endRight1">
+        <Constraint
+            android:id="@+id/card_recommended_movie1"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie2"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie2"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie3"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie3"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toStartOf="@id/card_recommended_movie4"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/card_recommended_movie4"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            motion:layout_constraintBottom_toTopOf="@id/recom_guideline"
+            motion:layout_constraintEnd_toEndOf="@id/end_gl"
+            motion:layout_constraintStart_toStartOf="@id/start_gl"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:pathMotionArc="startVertical"
+            motion:transitionEasing="linear" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetStart="@id/end"
+        motion:constraintSetEnd="@id/start"
+        motion:duration="500">
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie1"
+            motion:dragDirection="dragLeft"
+            motion:onTouchUp="autoCompleteToEnd"
+            motion:dragThreshold="@integer/material_motion_duration_medium_2"/>
+    </Transition>
+    <Transition
+        motion:constraintSetEnd="@id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500">
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie2"
+            motion:touchAnchorSide="right"
+            motion:dragDirection="dragRight"
+            motion:onTouchUp="autoCompleteToEnd" />
+    </Transition>
+
+
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@id/startRight1"
+        motion:duration="500">
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie2"
+            motion:dragDirection="dragLeft"
+            motion:onTouchUp="autoCompleteToEnd"
+            motion:maxVelocity="20"
+            motion:maxAcceleration="20"/>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@id/startRight1"
+        motion:constraintSetEnd="@id/start"
+        motion:duration="500">
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie3"
+            motion:dragDirection="dragRight"
+            motion:touchAnchorSide="right"
+            motion:onTouchUp="autoCompleteToEnd"
+            motion:maxVelocity="20"
+            motion:maxAcceleration="20"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@id/startRight1"
+        motion:constraintSetEnd="@id/endRight1" >
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie3"
+            motion:dragDirection="dragLeft"
+            motion:onTouchUp="autoCompleteToEnd"
+            motion:maxVelocity="20"
+            motion:maxAcceleration="20"/>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@id/endRight1"
+        motion:constraintSetEnd="@id/startRight1"
+        motion:duration="500">
+        <OnSwipe
+            motion:dragScale="2"
+            motion:nestedScrollFlags="disableScroll"
+            motion:touchRegionId="@id/card_recommended_movie4"
+            motion:dragDirection="dragRight"
+            motion:touchAnchorSide="right"
+            motion:onTouchUp="autoCompleteToEnd"
+            motion:maxVelocity="20"
+            motion:maxAcceleration="20"/>
+    </Transition>
+</MotionScene>

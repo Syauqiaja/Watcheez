@@ -5,13 +5,18 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.carousel.CarouselSnapHelper
 import com.syauqi.watcheez.R
 import com.syauqi.watcheez.core.data.Resource
 import com.syauqi.watcheez.presentation.features.home.adapter.PopularArtistAdapter
 import com.syauqi.watcheez.presentation.base.BaseFragment
 import com.syauqi.watcheez.databinding.FragmentHomeBinding
+import com.syauqi.watcheez.databinding.ItemMovieLandscapeBinding
+import com.syauqi.watcheez.domain.movie.model.Movie
 import com.syauqi.watcheez.presentation.features.home.adapter.TrendingArtistAdapter
 import com.syauqi.watcheez.domain.people.model.People
+import com.syauqi.watcheez.presentation.features.home.adapter.MovieCarouselAdapter
+import com.syauqi.watcheez.presentation.features.movie_detail.adapter.MovieListAdapter
 import com.syauqi.watcheez.utils.MovieGenres
 import com.syauqi.watcheez.utils.asRemoteImagePath
 import com.syauqi.watcheez.utils.enums.Gender
@@ -100,20 +105,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                     is Resource.Success -> {
                         if(result.data != null){
                             trendingMovieLoaded = true
-                            binding.cardRecommendedMovie.apply {
-                                val movie = result.data[0]
-                                tvMovieTitle.text = movie.title
-                                tvGenreValue.text = MovieGenres.getMovieGenreById(movie.genreIds[0])
-                                val popularity = String.format("%.2f", movie.popularity)
-                                tvPopularity.text = getString(R.string.popularity_format, popularity)
-                                tvRating.text =  String.format("%.2f", movie.voteAverage)
-                                Glide.with(requireContext())
-                                    .load(movie.backdropPath.asRemoteImagePath(ImageSize.ORIGINAL))
-                                    .placeholder(shimmerDrawable)
-                                    .into(ivBackdrop)
-                                binding.cardRecommendedMovie.root.setOnClickListener {
-                                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(movie.id))
-                                }
+                            binding.cardRecommendedMovie1.bind(result.data[0])
+                            binding.cardRecommendedMovie1.ivBackdrop.setOnClickListener {
+                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(result.data[0].id))
+                            }
+                            binding.cardRecommendedMovie2.bind(result.data[1])
+                            binding.cardRecommendedMovie2.ivBackdrop.setOnClickListener {
+                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(result.data[1].id))
+                            }
+                            binding.cardRecommendedMovie3.bind(result.data[2])
+                            binding.cardRecommendedMovie3.ivBackdrop.setOnClickListener {
+                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(result.data[2].id))
+                            }
+                            binding.cardRecommendedMovie4.bind(result.data[3])
+                            binding.cardRecommendedMovie4.ivBackdrop.setOnClickListener {
+                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMovieDetailFragment(result.data[3].id))
                             }
                             hideShimmer()
                         }
@@ -125,6 +131,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
             }
         }
+    }
+
+    private fun ItemMovieLandscapeBinding.bind(movie: Movie){
+        tvMovieTitle.text = movie.title
+        tvGenreValue.text = MovieGenres.getMovieGenreById(movie.genreIds[0])
+        val popularity = String.format("%.2f", movie.popularity)
+        tvPopularity.text = getString(R.string.popularity_format, popularity)
+        tvRating.text =  String.format("%.2f", movie.voteAverage)
+        Glide.with(requireContext())
+            .load(movie.backdropPath.asRemoteImagePath(ImageSize.ORIGINAL))
+            .placeholder(shimmerDrawable)
+            .into(ivBackdrop)
     }
 
     private fun hideShimmer() {

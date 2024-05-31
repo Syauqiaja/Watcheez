@@ -323,14 +323,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_related_movies"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_190sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:clipToPadding="false"
+                android:clipChildren="false"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_14sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_movie_landscape"
-                android:paddingBottom="@dimen/_20sdp"
+                android:paddingHorizontal="@dimen/_4sdp"
+                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                tools:listitem="@layout/item_carousel_movie"
                 tools:itemCount="4"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
